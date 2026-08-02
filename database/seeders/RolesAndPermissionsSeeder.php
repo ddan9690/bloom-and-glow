@@ -1,46 +1,143 @@
 <?php
 
-use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\UserController;
-use Illuminate\Support\Facades\Route;
+namespace Database\Seeders;
 
-Route::get('/', function () {
-    return view('home');
-})->name('home');
+use App\Models\User;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\PermissionRegistrar;
 
-Route::get('/about', function () {
-    return view('pages.about');
-})->name('about');
+class RolesAndPermissionsSeeder extends Seeder
+{
+    public function run(): void
+    {
+        app()[PermissionRegistrar::class]->forgetCachedPermissions();
 
-Route::get('/contact', function () {
-    return view('pages.contact');
-})->name('contact');
+        /*
+        |--------------------------------------------------------------------------
+        | Permissions
+        |--------------------------------------------------------------------------
+        */
 
-Route::get('/faq', function () {
-    return view('pages.faq');
-})->name('faq');
+        $permissions = [
 
-Route::get('/book', function () {
-    return view('bookings.create');
-})->name('booking.create');
+            // Dashboard
+            'view dashboard',
 
-Route::middleware('guest')->group(function () {
-    Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
-    Route::post('/login', [LoginController::class, 'login'])->name('login.post');
-});
+            // Users
+            'manage users',
 
-Route::post('/logout', [LoginController::class, 'logout'])->name('logout')->middleware('auth');
+            // Roles
+            'manage roles',
 
-Route::middleware(['auth'])->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+            // Categories
+            'manage categories',
 
-    Route::middleware(['role:Super Admin|Admin'])->group(function () {
-        Route::get('/users', [UserController::class, 'index'])->name('users.index');
-        Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
-        Route::post('/users', [UserController::class, 'store'])->name('users.store');
-        Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
-        Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update');
-        Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
-    });
-});
+            // Services
+            'manage services',
+
+            // Bookings
+            'view bookings',
+            'manage bookings',
+            'update booking status',
+
+            // Settings
+            'manage settings',
+        ];
+
+        foreach ($permissions as $permission) {
+            Permission::firstOrCreate([
+                'name' => $permission,
+                'guard_name' => 'web',
+            ]);
+        }
+
+        /*
+        |--------------------------------------------------------------------------
+        | Roles
+        |--------------------------------------------------------------------------
+        */
+
+        $superAdmin = Role::firstOrCreate([
+            'name' => 'Super Admin',
+            'guard_name' => 'web',
+        ]);
+
+        $admin = Role::firstOrCreate([
+            'name' => 'Admin',
+            'guard_name' => 'web',
+        ]);
+
+        $staff = Role::firstOrCreate([
+            'name' => 'Staff',
+            'guard_name' => 'web',
+        ]);
+
+        /*
+        |--------------------------------------------------------------------------
+        | Super Admin Permissions
+        |--------------------------------------------------------------------------
+        */
+
+        $superAdmin->syncPermissions(Permission::all());
+
+        /*
+        |--------------------------------------------------------------------------
+        | Admin Permissions
+        |--------------------------------------------------------------------------
+        */
+
+        $admin->syncPermissions([
+
+            'view dashboard',
+
+            'manage users',
+
+            'manage categories',
+
+            'manage services',
+
+            'view bookings',
+            'manage bookings',
+
+        ]);
+
+        /*
+        |--------------------------------------------------------------------------
+        | Staff Permissions
+        |--------------------------------------------------------------------------
+        */
+
+        $staff->syncPermissions([
+
+            'view dashboard',
+
+            'view bookings',
+
+            'update booking status',
+
+        ]);
+
+        /*
+        |--------------------------------------------------------------------------
+        | Default System Developer
+        |--------------------------------------------------------------------------
+        */
+
+        $user = User::updateOrCreate(
+            [
+                'phone' => '0711317235',
+            ],
+            [
+                'name' => 'Dancan Otieno',
+                'password' => Hash::make('jamadata'),
+            ]
+        );
+
+        if (!$user->hasRole('Super Admin')) {
+            $user->assignRole('Super Admin');
+        }
+    }
+}
