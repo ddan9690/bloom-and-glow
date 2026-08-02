@@ -19,6 +19,9 @@
     <!-- AOS Animation CSS -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+
     <!-- Tailwind v4 & Vite Assets -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
@@ -43,6 +46,9 @@
 
     <!-- Scripts Initialization -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- SweetAlert2 JS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
     <script>
         AOS.init({ duration: 800, once: true, offset: 40 });
         document.addEventListener("DOMContentLoaded", () => { lucide.createIcons(); });

@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Booking;
+use App\Models\Category;
+use App\Models\Service;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -11,41 +14,46 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        // Dummy data placeholders for counters and recent bookings matching the UI
+        // Real-time metrics counters computed from the database
         $stats = [
-            'pending' => 5,
-            'confirmed' => 24,
-            'completed' => 142,
-            'cancelled' => 3,
+            'pending' => Booking::where('status', 'pending')->count(),
+            'confirmed' => Booking::where('status', 'confirmed')->count(),
+            'completed' => Booking::where('status', 'completed')->count(),
+            'cancelled' => Booking::where('status', 'cancelled')->count(),
         ];
 
-        $latestBookings = [
-            [
-                'id' => '01',
-                'booked_on' => 'Aug 2, 2026',
-                'name' => 'Brenda Achieng',
-                'phone' => '0712 345 678',
-                'service' => 'Classic Haircut',
-                'appointment_date' => 'Aug 3, 10:00 AM',
-            ],
-            [
-                'id' => '02',
-                'booked_on' => 'Aug 2, 2026',
-                'name' => 'Kevin Otieno',
-                'phone' => '0722 987 654',
-                'service' => 'Beard Trim & Grooming',
-                'appointment_date' => 'Aug 2, 02:30 PM',
-            ],
-            [
-                'id' => '03',
-                'booked_on' => 'Aug 1, 2026',
-                'name' => 'Sharon Akinyi',
-                'phone' => '0733 112 233',
-                'service' => 'Glow Facial Treatment',
-                'appointment_date' => 'Aug 4, 11:00 AM',
-            ],
-        ];
+        // Fetch latest bookings sorted by most recent first
+        $latestBookings = Booking::latest()
+            ->take(5)
+            ->get()
+            ->map(function ($booking, $index) {
+                // Resolve multiple services from service_ids JSON array if present
+                $serviceNames = 'General Service';
+                if (!empty($booking->service_ids)) {
+                    $serviceIdsArray = json_decode($booking->service_ids, true);
+                    if (is_array($serviceIdsArray) && count($serviceIdsArray) > 0) {
+                        $serviceNames = Service::whereIn('id', $serviceIdsArray)->pluck('name')->implode(', ');
+                    }
+                } elseif ($booking->service_id) {
+                    $serviceNames = optional($booking->service)->name ?? 'General Service';
+                }
 
-        return view('backend.index', compact('stats', 'latestBookings'));
+                return [
+                    'id' => $booking->id,
+                    'row_no' => str_pad($index + 1, 2, '0', STR_PAD_LEFT),
+                    'booked_on' => $booking->created_at->format('M j, Y'),
+                    'name' => $booking->client_name,
+                    'phone' => $booking->client_phone,
+                    'service' => $serviceNames,
+                    'appointment_date' => $booking->preferred_date ? \Carbon\Carbon::parse($booking->preferred_date)->format('M j, Y') : 'N/A',
+                    'appointment_time' => $booking->preferred_time ? \Carbon\Carbon::parse($booking->preferred_time)->format('h:i A') : 'N/A',
+                    'status' => $booking->status,
+                ];
+            });
+
+        // Fetch categories with their active services for the management catalog layout
+        $categories = Category::with('services')->get();
+
+        return view('backend.index', compact('stats', 'latestBookings', 'categories'));
     }
 }

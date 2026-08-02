@@ -1,0 +1,76 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Booking;
+use App\Models\Category;
+use App\Services\BookingService;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
+class BookingController extends Controller
+{
+    protected BookingService $bookingService;
+
+    public function __construct(BookingService $bookingService)
+    {
+        $this->bookingService = $bookingService;
+    }
+
+    /**
+     * Show the multi-step booking form.
+     */
+    public function create()
+    {
+        $categories = Category::with('services')->get();
+        return view('pages.book', compact('categories'));
+    }
+
+    /**
+     * Store a newly created booking in storage supporting multiple services.
+     */
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'service_ids'       => ['required', 'array', 'min:1'],
+            'service_ids.*'     => ['exists:services,id'],
+            'client_name'       => ['required', 'string', 'max:255'],
+            'client_phone'      => ['required', 'string', 'max:50'],
+            'preferred_date'    => ['required', 'date', 'after_or_equal:today'],
+            'preferred_time'    => ['required', 'string'],
+            'location_type'     => ['required', 'in:studio,home'],
+            'location_details'  => ['nullable', 'string'],
+            'client_notes'      => ['nullable', 'string'],
+        ]);
+
+        try {
+            $this->bookingService->createBooking($validated);
+        } catch (\Exception $e) {
+            return back()->withErrors(['preferred_date' => $e->getMessage()])->withInput();
+        }
+
+        return redirect()->route('book')->with('success', 'Your booking has been successfully submitted and is pending confirmation!');
+    }
+
+    /**
+     * Update the booking status or reschedule details.
+     */
+    public function updateStatus(Request $request, Booking $booking)
+    {
+        $validated = $request->validate([
+            'status' => 'required|in:pending,confirmed,rescheduled,cancelled',
+            'preferred_date' => 'nullable|required_if:status,rescheduled|date',
+            'preferred_time' => 'nullable|required_if:status,rescheduled',
+            'admin_notes' => 'nullable|string',
+            'ignore_blocks' => 'nullable|boolean',
+        ]);
+
+        try {
+            $this->bookingService->updateBookingStatus($booking, $validated, Auth::id());
+        } catch (\Exception $e) {
+            return back()->withErrors(['preferred_date' => $e->getMessage()])->withInput();
+        }
+
+        return back()->with('success', 'Booking status updated successfully.');
+    }
+}

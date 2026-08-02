@@ -62,7 +62,7 @@
                     </button>
                 </form>
             @endguest
-            <a href="{{ route('booking.create') }}" class="inline-flex items-center justify-center px-5 py-2.5 rounded-xl bg-purple-900 text-white text-sm font-medium hover:bg-purple-800 transition shadow-sm shadow-purple-200">
+            <a href="{{ route('book') }}" class="inline-flex items-center justify-center px-5 py-2.5 rounded-xl bg-purple-900 text-white text-sm font-medium hover:bg-purple-800 transition shadow-sm shadow-purple-200">
                 Book Reservation
             </a>
         </div>
@@ -97,7 +97,7 @@
         </div>
 
         <div class="pt-2 space-y-2">
-            <a href="{{ route('booking.create') }}" class="w-full text-center block px-5 py-3 rounded-xl bg-purple-900 text-white font-medium shadow-md shadow-purple-200 hover:bg-purple-800 transition">
+            <a href="{{ route('book') }}" class="w-full text-center block px-5 py-3 rounded-xl bg-purple-900 text-white font-medium shadow-md shadow-purple-200 hover:bg-purple-800 transition">
                 Book Reservation
             </a>
             @guest

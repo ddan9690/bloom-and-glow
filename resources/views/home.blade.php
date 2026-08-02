@@ -28,7 +28,7 @@
 
                 <!-- Action Buttons -->
                 <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-10">
-                    <a href="#" class="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-purple-900 hover:bg-purple-800 text-white font-medium px-8 py-3.5 rounded-lg shadow-sm transition-all text-base">
+                    <a href="{{ route('book') }}" class="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-purple-900 hover:bg-purple-800 text-white font-medium px-8 py-3.5 rounded-lg shadow-sm transition-all text-base">
                         <i data-lucide="calendar-check" class="w-5 h-5 text-purple-200"></i>
                         <span>Book Your Appointment Now</span>
                     </a>
@@ -102,7 +102,7 @@
                 </div>
 
                 <div class="lg:col-span-4 flex flex-col sm:flex-row lg:flex-col justify-center items-center gap-3">
-                    <a href="#" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-purple-900 hover:bg-purple-800 text-white font-medium px-6 py-3.5 rounded-lg shadow-sm transition-all text-center text-base">
+                    <a href="{{ route('book') }}" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-purple-900 hover:bg-purple-800 text-white font-medium px-6 py-3.5 rounded-lg shadow-sm transition-all text-center text-base">
                         <i data-lucide="calendar-plus" class="w-5 h-5 text-purple-200"></i>
                         <span>Start Your Booking</span>
                     </a>
@@ -137,7 +137,7 @@
                     <p class="text-gray-600 text-sm mb-6 line-clamp-2">Revitalize your hair with deep-cleansing washes, professional treatments, and sleek styling designed to turn heads.</p>
                     <div class="flex items-center justify-between pt-4 border-t border-gray-100">
                         <span class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Professional Care</span>
-                        <a href="#" class="inline-flex items-center gap-1 text-sm font-semibold text-purple-800 hover:text-purple-900">
+                        <a href="{{ route('book') }}" class="inline-flex items-center gap-1 text-sm font-semibold text-purple-800 hover:text-purple-900">
                             Book Slot <i data-lucide="arrow-right" class="w-4 h-4"></i>
                         </a>
                     </div>
@@ -155,7 +155,7 @@
                     <p class="text-gray-600 text-sm mb-6 line-clamp-2">Precision nail care, expert polishing, and creative color palettes to give your hands a pristine, polished aesthetic.</p>
                     <div class="flex items-center justify-between pt-4 border-t border-gray-100">
                         <span class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Professional Care</span>
-                        <a href="#" class="inline-flex items-center gap-1 text-sm font-semibold text-purple-800 hover:text-purple-900">
+                        <a href="{{ route('book') }}" class="inline-flex items-center gap-1 text-sm font-semibold text-purple-800 hover:text-purple-900">
                             Book Slot <i data-lucide="arrow-right" class="w-4 h-4"></i>
                         </a>
                     </div>
@@ -173,7 +173,7 @@
                     <p class="text-gray-600 text-sm mb-6 line-clamp-2">Sharp cuts, beard styling, and complete grooming treatments delivered with absolute precision and hygiene.</p>
                     <div class="flex items-center justify-between pt-4 border-t border-gray-100">
                         <span class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Professional Care</span>
-                        <a href="#" class="inline-flex items-center gap-1 text-sm font-semibold text-purple-800 hover:text-purple-900">
+                        <a href="{{ route('book') }}" class="inline-flex items-center gap-1 text-sm font-semibold text-purple-800 hover:text-purple-900">
                             Book Slot <i data-lucide="arrow-right" class="w-4 h-4"></i>
                         </a>
                     </div>
@@ -182,7 +182,7 @@
         </div>
 
         <div class="text-center mt-10" data-aos="fade-up">
-            <a href="#" class="inline-flex items-center gap-2 bg-gray-100 hover:bg-gray-200 text-gray-800 font-medium px-6 py-3 rounded-lg transition-all text-sm">
+            <a href="{{ route('book') }}" class="inline-flex items-center gap-2 bg-gray-100 hover:bg-gray-200 text-gray-800 font-medium px-6 py-3 rounded-lg transition-all text-sm">
                 <span>View Complete Services List</span>
                 <i data-lucide="arrow-right" class="w-4 h-4"></i>
             </a>
@@ -251,7 +251,7 @@
                 </div>
 
                 <div class="mt-8">
-                    <a href="#" class="inline-flex items-center gap-2 bg-purple-900 hover:bg-purple-800 text-white font-medium px-6 py-3 rounded-lg shadow-sm transition-all text-sm">
+                    <a href="{{ route('book') }}" class="inline-flex items-center gap-2 bg-purple-900 hover:bg-purple-800 text-white font-medium px-6 py-3 rounded-lg shadow-sm transition-all text-sm">
                         <span>Book Your Session Now</span>
                         <i data-lucide="calendar" class="w-4 h-4"></i>
                     </a>
@@ -272,11 +272,11 @@
             Secure your appointment today and let Mbita's top beauty and grooming specialists treat you to unmatched dedicated care.
         </p>
         <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
-            <a href="#" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-purple-900 hover:bg-purple-800 text-white font-medium px-8 py-3.5 rounded-lg shadow-sm transition-all text-base">
+            <a href="{{ route('book') }}" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-purple-900 hover:bg-purple-800 text-white font-medium px-8 py-3.5 rounded-lg shadow-sm transition-all text-base">
                 <i data-lucide="calendar-check" class="w-5 h-5 text-purple-200"></i>
                 <span>Book Appointment Now</span>
             </a>
-            <a href="#" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-gray-100 hover:bg-gray-200 text-gray-800 font-medium px-8 py-3.5 rounded-lg transition-all text-base">
+            <a href="{{ url('/contact') }}" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-gray-100 hover:bg-gray-200 text-gray-800 font-medium px-8 py-3.5 rounded-lg transition-all text-base">
                 <i data-lucide="map-pin" class="w-5 h-5 text-gray-600"></i>
                 <span>Visit Us in Mbita</span>
             </a>
