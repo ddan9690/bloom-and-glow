@@ -10,7 +10,7 @@
                 </span>
                 <span class="text-white">{{ auth()->user()->name }}</span>
             </div>
-            <form method="POST" action="#" class="inline">
+            <form method="POST" action="{{ route('logout') }}" class="inline">
                 @csrf
                 <button type="submit" class="text-purple-200 hover:text-white transition text-xs flex items-center gap-1">
                     <i data-lucide="log-out" class="w-3 h-3"></i> Logout
@@ -31,23 +31,17 @@
             </span>
         </a>
 
-        <!-- Desktop Navigation Links (Static Links for Public & Management) -->
+        <!-- Desktop Navigation Links -->
         <nav class="hidden lg:flex items-center gap-6 text-sm font-medium text-gray-600 font-['Plus_Jakarta_Sans']">
             <a href="{{ url('/') }}" class="hover:text-purple-800 transition">Home</a>
             <a href="{{ url('/about') }}" class="hover:text-purple-800 transition">About Us</a>
             <a href="{{ url('/faq') }}" class="hover:text-purple-800 transition">FAQ</a>
             <a href="{{ url('/contact') }}" class="hover:text-purple-800 transition">Contact</a>
             
-            <!-- Management Links (Static for now) -->
+            <!-- Retained Bookings Navigation Link -->
             <div class="h-4 w-px bg-purple-200 mx-1"></div>
             <a href="#" class="text-purple-800 hover:text-purple-900 transition flex items-center gap-1 font-semibold">
                 <i data-lucide="calendar-check" class="w-4 h-4"></i> Bookings
-            </a>
-            <a href="#" class="text-purple-800 hover:text-purple-900 transition flex items-center gap-1 font-semibold">
-                <i data-lucide="scissors" class="w-4 h-4"></i> Services
-            </a>
-            <a href="#" class="text-purple-800 hover:text-purple-900 transition flex items-center gap-1 font-semibold">
-                <i data-lucide="grid" class="w-4 h-4"></i> Categories
             </a>
         </nav>
 
@@ -57,8 +51,18 @@
                 <a href="{{ route('login') }}" class="text-sm font-medium text-gray-700 hover:text-purple-800 px-3 py-2 transition">
                     Sign In
                 </a>
+            @else
+                <a href="{{ route('dashboard') }}" class="text-sm font-medium text-purple-900 hover:text-purple-700 px-3 py-2 transition">
+                    Dashboard
+                </a>
+                <form method="POST" action="{{ route('logout') }}" class="inline">
+                    @csrf
+                    <button type="submit" class="text-sm font-medium text-red-600 hover:text-red-700 px-3 py-2 transition">
+                        Logout
+                    </button>
+                </form>
             @endguest
-            <a href="{{ url('/') }}" class="inline-flex items-center justify-center px-5 py-2.5 rounded-xl bg-purple-900 text-white text-sm font-medium hover:bg-purple-800 transition shadow-sm shadow-purple-200">
+            <a href="{{ route('booking.create') }}" class="inline-flex items-center justify-center px-5 py-2.5 rounded-xl bg-purple-900 text-white text-sm font-medium hover:bg-purple-800 transition shadow-sm shadow-purple-200">
                 Book Reservation
             </a>
         </div>
@@ -87,19 +91,29 @@
 
         <div class="space-y-3 pb-4 border-b border-purple-50">
             <p class="text-xs font-bold uppercase tracking-wider text-purple-400 font-['Outfit']">Management Section</p>
-            <a href="#" class="block text-purple-800 font-medium hover:text-purple-900">Manage Bookings</a>
-            <a href="#" class="block text-purple-800 font-medium hover:text-purple-900">Manage Services</a>
-            <a href="#" class="block text-purple-800 font-medium hover:text-purple-900">Manage Categories</a>
+            <a href="#" class="block text-purple-800 font-medium hover:text-purple-900 flex items-center gap-1.5">
+                <i data-lucide="calendar-check" class="w-4 h-4"></i> Bookings
+            </a>
         </div>
 
         <div class="pt-2 space-y-2">
-            <a href="{{ url('/') }}" class="w-full text-center block px-5 py-3 rounded-xl bg-purple-900 text-white font-medium shadow-md shadow-purple-200 hover:bg-purple-800 transition">
+            <a href="{{ route('booking.create') }}" class="w-full text-center block px-5 py-3 rounded-xl bg-purple-900 text-white font-medium shadow-md shadow-purple-200 hover:bg-purple-800 transition">
                 Book Reservation
             </a>
             @guest
                 <a href="{{ route('login') }}" class="w-full text-center block px-5 py-2.5 rounded-xl bg-purple-50 text-purple-800 font-medium hover:bg-purple-100 transition">
                     Sign In
                 </a>
+            @else
+                <a href="{{ route('dashboard') }}" class="w-full text-center block px-5 py-2.5 rounded-xl bg-purple-50 text-purple-800 font-medium hover:bg-purple-100 transition">
+                    Dashboard
+                </a>
+                <form method="POST" action="{{ route('logout') }}" class="w-full">
+                    @csrf
+                    <button type="submit" class="w-full text-center block px-5 py-2.5 rounded-xl bg-red-50 text-red-700 font-medium hover:bg-red-100 transition">
+                        Logout
+                    </button>
+                </form>
             @endguest
         </div>
     </div>

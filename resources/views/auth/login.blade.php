@@ -36,22 +36,31 @@
                     </h1>
                 </div>
 
+                <!-- Validation Errors Alert -->
+                @if ($errors->any())
+                <div class="mb-6 bg-red-50 border border-red-200 text-red-800 px-4 py-3 rounded-xl text-sm space-y-1">
+                    @foreach ($errors->all() as $error)
+                        <p>{{ $error }}</p>
+                    @endforeach
+                </div>
+                @endif
+
                 <!-- Login Form -->
-                <form action="#" method="POST" class="space-y-5">
+                <form action="{{ route('login.post') }}" method="POST" class="space-y-5">
                     @csrf
 
-                    <!-- Email Input -->
+                    <!-- Phone Number Input -->
                     <div>
-                        <label for="email" class="block text-sm font-semibold font-['Outfit'] text-gray-900 mb-2">
-                            Email Address <span class="text-red-500">*</span>
+                        <label for="phone" class="block text-sm font-semibold font-['Outfit'] text-gray-900 mb-2">
+                            Phone Number <span class="text-red-500">*</span>
                         </label>
                         <div class="relative">
                             <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gray-400">
-                                <i data-lucide="mail" class="w-4 h-4"></i>
+                                <i data-lucide="phone" class="w-4 h-4"></i>
                             </div>
-                            <input type="email" id="email" name="email" required autofocus
+                            <input type="tel" id="phone" name="phone" value="{{ old('phone') }}" required autofocus
                                 class="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-300 focus:border-purple-800 focus:ring-1 focus:ring-purple-800 text-sm text-gray-900 bg-gray-50/50 outline-none"
-                                placeholder="johndoe@gmail.com">
+                                placeholder="0712345678">
                         </div>
                     </div>
 
@@ -95,14 +104,6 @@
                     </div>
 
                 </form>
-
-                <!-- Footer Link (Don't have an account?) -->
-                <div class="mt-8 text-center border-t border-gray-100 pt-6">
-                    <p class="text-sm text-gray-600">
-                        Don't have an account? 
-                        <a href="{{ route('register') }}" class="font-bold text-purple-900 hover:underline">Register here</a>
-                    </p>
-                </div>
 
             </div>
 
