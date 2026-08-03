@@ -24,8 +24,8 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
         
         <!-- Brand Logo -->
-        <a href="{{ url('/') }}" class="flex items-center gap-3">
-            <img src="{{ asset('images/bloom-and-gloom-logo.png') }}" alt="Bloom & Glow Logo" class="h-10 w-auto object-contain">
+        <a href="{{ url('/') }}" class="flex items-center gap-3 group">
+            <img src="{{ asset('images/bloom-and-gloom-logo.png') }}" alt="Bloom & Glow Logo" class="h-12 sm:h-14 w-auto object-contain block bg-transparent">
             <span class="text-xl font-bold tracking-tight text-gray-900 font-['Outfit']">
                 Bloom <span class="text-purple-800">&</span> Glow
             </span>

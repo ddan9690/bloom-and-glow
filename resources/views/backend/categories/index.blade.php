@@ -81,16 +81,24 @@
                         <tr class="hover:bg-purple-50/30 transition-colors">
                             <td class="py-3.5 px-4 font-semibold text-gray-900">{{ $loop->iteration }}</td>
                             <td class="py-3.5 px-4">
-                                @php
-                                    $imagePath = $category->image ? asset('storage/' . $category->image) : asset('images/placeholder-image.png');
-                                @endphp
-                                <img src="{{ $imagePath }}" 
-                                     alt="{{ $category->name }}" 
-                                     width="45" 
-                                     class="rounded-lg object-cover shadow-sm cursor-pointer hover:opacity-85 transition-opacity"
-                                     @click="activeImage = '{{ $imagePath }}'; modalOpen = true;">
+                                @if($category->image)
+                                    @php
+                                        $imagePath = asset('storage/' . $category->image);
+                                    @endphp
+                                    <img src="{{ $imagePath }}" 
+                                         alt="{{ $category->name }}" 
+                                         width="45" 
+                                         class="rounded-lg object-cover shadow-sm cursor-pointer hover:opacity-85 transition-opacity"
+                                         @click="activeImage = '{{ $imagePath }}'; modalOpen = true;">
+                                @else
+                                    <span class="text-xs text-gray-400 italic">No image</span>
+                                @endif
                             </td>
-                            <td class="py-3.5 px-4 font-bold text-gray-900 font-['Outfit']">{{ $category->name }}</td>
+                            <td class="py-3.5 px-4 font-bold text-gray-900 font-['Outfit']">
+                                <a href="{{ route('management.categories.show', ['category' => $category->id, 'slug' => $category->slug]) }}" class="text-purple-900 hover:text-purple-700 hover:underline transition-colors">
+                                    {{ $category->name }}
+                                </a>
+                            </td>
                             <td class="py-3.5 px-4">
                                 <span class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium {{ $category->available === 'yes' ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : 'bg-red-50 text-red-700 border border-red-200' }}">
                                     {{ $category->available === 'yes' ? 'Available' : 'Not Available' }}

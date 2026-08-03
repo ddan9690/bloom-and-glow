@@ -1,71 +1,51 @@
-@extends('layouts.backend')
+@extends('layouts.app')
+
+@section('title', "Add New Service | Bloom & Glow Mbita")
 
 @section('content')
-<div class="container-fluid px-4">
-    <div class="my-4">
-        <h1 class="h3 mb-0 text-gray-800">Add Service</h1>
+<section class="bg-white py-8 border-b border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h1 class="text-2xl font-bold text-gray-900 font-['Outfit']">Add New Service</h1>
     </div>
+</section>
 
-    <div class="card shadow mb-4">
-        <div class="card-body">
-            <form action="{{ route('backend.services.store') }}" method="POST">
-                @csrf
-
-                <div class="mb-3">
-                    <label for="category_id" class="form-label">Category <span class="text-danger">*</span></label>
-                    <select class="form-select @error('category_id') is-invalid @enderror" id="category_id" name="category_id" required>
-                        <option value="">Select Category</option>
-                        @foreach($categories as $category)
-                            <option value="{{ $category->id }}" {{ old('category_id') == $category->id ? 'selected' : '' }}>
-                                {{ $category->name }}
-                            </option>
-                        @endforeach
-                    </select>
-                    @error('category_id')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div>
-
-                <div class="mb-3">
-                    <label for="name" class="form-label">Service Name <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name') }}" required>
-                    @error('name')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div>
-
-                <div class="mb-3">
-                    <label for="description" class="form-label">Description</label>
-                    <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description" rows="3">{{ old('description') }}</textarea>
-                    @error('description')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div>
-
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <label for="price" class="form-label">Price <span class="text-danger">*</span></label>
-                        <input type="number" step="0.01" class="form-control @error('price') is-invalid @enderror" id="price" name="price" value="{{ old('price') }}" required>
-                        @error('price')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
-
-                    <div class="col-md-6 mb-3">
-                        <label for="duration" class="form-label">Duration (Minutes) <span class="text-danger">*</span></label>
-                        <input type="number" class="form-control @error('duration') is-invalid @enderror" id="duration" name="duration" value="{{ old('duration') }}" required>
-                        @error('duration')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
-                </div>
-
-                <div class="d-flex justify-content-between">
-                    <a href="{{ route('backend.services.index') }}" class="btn btn-secondary">Cancel</a>
-                    <button type="submit" class="btn btn-primary">Save Service</button>
-                </div>
-            </form>
-        </div>
+<section class="py-8 bg-gray-50/50">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <form action="{{ route('management.services.store') }}" method="POST" enctype="multipart/form-data" class="bg-white rounded-2xl border border-gray-200 shadow-sm p-6 space-y-6">
+            @csrf
+            <div>
+                <label class="block text-xs font-semibold uppercase tracking-wider text-gray-600 mb-2">Category</label>
+                <select name="category_id" class="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-purple-900" required>
+                    <option value="">Select Category</option>
+                    @foreach($categories as $cat)
+                        <option value="{{ $cat->id }}">{{ $cat->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div>
+                <label class="block text-xs font-semibold uppercase tracking-wider text-gray-600 mb-2">Service Name</label>
+                <input type="text" name="name" class="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-purple-900" required>
+            </div>
+            <div>
+                <label class="block text-xs font-semibold uppercase tracking-wider text-gray-600 mb-2">Description</label>
+                <textarea name="description" rows="4" class="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-purple-900"></textarea>
+            </div>
+            <div>
+                <label class="block text-xs font-semibold uppercase tracking-wider text-gray-600 mb-2">Image</label>
+                <input type="file" name="image" class="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-sm file:font-semibold file:bg-purple-50 file:text-purple-700 hover:file:bg-purple-100">
+            </div>
+            <div>
+                <label class="block text-xs font-semibold uppercase tracking-wider text-gray-600 mb-2">Status</label>
+                <select name="status" class="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-purple-900" required>
+                    <option value="yes">Available</option>
+                    <option value="no">Not Available</option>
+                </select>
+            </div>
+            <div class="flex justify-end gap-3">
+                <a href="{{ route('management.services.index') }}" class="px-5 py-2.5 bg-gray-100 text-gray-700 rounded-xl text-sm font-medium">Cancel</a>
+                <button type="submit" class="px-5 py-2.5 bg-purple-900 text-white rounded-xl text-sm font-medium">Save Service</button>
+            </div>
+        </form>
     </div>
-</div>
+</section>
 @endsection

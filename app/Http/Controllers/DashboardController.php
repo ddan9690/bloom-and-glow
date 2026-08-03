@@ -5,21 +5,25 @@ namespace App\Http\Controllers;
 use App\Models\Booking;
 use App\Models\Category;
 use App\Models\Service;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 
 class DashboardController extends Controller
 {
     /**
-     * Display the admin dashboard index view with metrics and management data.
+     * Display the admin dashboard index view with metrics, management data, and quick overviews.
      */
     public function index()
     {
-        // Real-time metrics counters computed from the database
+        // Real-time booking metrics counters computed from the database
         $stats = [
             'pending' => Booking::where('status', 'pending')->count(),
             'confirmed' => Booking::where('status', 'confirmed')->count(),
             'completed' => Booking::where('status', 'completed')->count(),
             'cancelled' => Booking::where('status', 'cancelled')->count(),
+            'total_users' => User::count(),
+            'total_services' => Service::count(),
         ];
 
         // Fetch latest bookings sorted by most recent first
@@ -27,7 +31,6 @@ class DashboardController extends Controller
             ->take(5)
             ->get()
             ->map(function ($booking, $index) {
-                // Resolve multiple services from service_ids JSON array if present
                 $serviceNames = 'General Service';
                 if (!empty($booking->service_ids)) {
                     $serviceIdsArray = json_decode($booking->service_ids, true);
@@ -51,9 +54,12 @@ class DashboardController extends Controller
                 ];
             });
 
-        // Fetch categories with their active services for the management catalog layout
+        // Fetch categories with their active services for management catalog overview
         $categories = Category::with('services')->get();
 
-        return view('backend.index', compact('stats', 'latestBookings', 'categories'));
+        // Fetch recent system users for quick administrative overview
+        $recentUsers = User::with('roles')->latest()->take(5)->get();
+
+        return view('backend.index', compact('stats', 'latestBookings', 'categories', 'recentUsers'));
     }
 }

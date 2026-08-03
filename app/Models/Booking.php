@@ -43,17 +43,30 @@ class Booking extends Model
     }
 
     /**
-     * The services that belong to the booking (via pivot table).
+     * The services that belong to the booking (fallback to single service if pivot table is missing).
      */
-    public function services(): BelongsToMany
+    public function services()
     {
-        return $this->belongsToMany(Service::class, 'booking_service');
+        // If you are using service_ids JSON array or single service_id when pivot table is absent:
+        if ($this->service_ids && is_array($this->service_ids)) {
+            return Service::whereIn('id', $this->service_ids)->get();
+        }
+        
+        return $this->hasMany(Service::class, 'id', 'service_id');
     }
 
     /**
      * Get the user who updated the status.
      */
     public function statusUpdatedBy(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'status_updated_by');
+    }
+
+    /**
+     * Alias for statusUpdatedBy to match relationship calls.
+     */
+    public function statusUpdater(): BelongsTo
     {
         return $this->belongsTo(User::class, 'status_updated_by');
     }

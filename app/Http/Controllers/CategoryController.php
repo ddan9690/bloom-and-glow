@@ -36,7 +36,15 @@ class CategoryController extends Controller
 
         Category::create($validated);
 
-        return redirect()->route('backend.categories.index')->with('success', 'Category created successfully.');
+        return redirect()->route('management.categories.index')->with('success', 'Category created successfully.');
+    }
+
+    public function show(Category $category, $slug = null)
+    {
+        // Load the category with its associated services
+        $category->load('services');
+
+        return view('backend.categories.show', compact('category'));
     }
 
     public function edit(Category $category)
@@ -63,7 +71,7 @@ class CategoryController extends Controller
 
         $category->update($validated);
 
-        return redirect()->route('backend.categories.index')->with('success', 'Category updated successfully.');
+        return redirect()->route('management.categories.index')->with('success', 'Category updated successfully.');
     }
 
     public function destroy(Category $category)
@@ -74,6 +82,6 @@ class CategoryController extends Controller
 
         $category->delete();
 
-        return redirect()->route('backend.categories.index')->with('success', 'Category deleted successfully.');
+        return redirect()->route('management.categories.index')->with('success', 'Category deleted successfully.');
     }
 }

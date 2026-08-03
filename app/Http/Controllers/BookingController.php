@@ -18,6 +18,34 @@ class BookingController extends Controller
     }
 
     /**
+     * Display a listing of all bookings grouped/filtered by status, ordered by latest.
+     */
+    public function index(Request $request)
+    {
+        $status = $request->get('status');
+
+        $query = Booking::with(['service', 'statusUpdater'])->latest();
+
+        if ($status && in_array($status, ['pending', 'confirmed', 'completed', 'cancelled', 'rescheduled'])) {
+            $query->where('status', $status);
+        }
+
+        $bookings = $query->paginate(15)->withQueryString();
+
+        // Count stats for filter tabs
+        $counts = [
+            'all' => Booking::count(),
+            'pending' => Booking::where('status', 'pending')->count(),
+            'confirmed' => Booking::where('status', 'confirmed')->count(),
+            'completed' => Booking::where('status', 'completed')->count(),
+            'cancelled' => Booking::where('status', 'cancelled')->count(),
+            'rescheduled' => Booking::where('status', 'rescheduled')->count(),
+        ];
+
+        return view('backend.bookings.index', compact('bookings', 'counts', 'status'));
+    }
+
+    /**
      * Show the multi-step booking form.
      */
     public function create()
@@ -58,7 +86,7 @@ class BookingController extends Controller
     public function updateStatus(Request $request, Booking $booking)
     {
         $validated = $request->validate([
-            'status' => 'required|in:pending,confirmed,rescheduled,cancelled',
+            'status' => 'required|in:pending,confirmed,completed,rescheduled,cancelled',
             'preferred_date' => 'nullable|required_if:status,rescheduled|date',
             'preferred_time' => 'nullable|required_if:status,rescheduled',
             'admin_notes' => 'nullable|string',

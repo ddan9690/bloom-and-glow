@@ -36,8 +36,11 @@
             <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden p-6 sm:p-8"
                 data-aos="fade-up">
 
-                <!-- Heading -->
-                <div class="text-center mb-8">
+                <!-- Brand Logo & Heading -->
+                <div class="text-center mb-8 flex flex-col items-center">
+                    <a href="{{ url('/') }}" class="inline-block mb-4">
+                        <img src="{{ asset('images/bloom-and-gloom-logo.png') }}" alt="Bloom & Glow Logo" class="h-14 sm:h-16 w-auto object-contain bg-transparent">
+                    </a>
                     <h1 class="text-2xl sm:text-3xl font-bold font-['Outfit'] text-gray-900">
                         Login
                     </h1>

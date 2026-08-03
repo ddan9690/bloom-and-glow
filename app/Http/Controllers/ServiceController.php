@@ -27,9 +27,9 @@ class ServiceController extends Controller
         $validated = $request->validate([
             'category_id' => 'required|exists:categories,id',
             'name' => 'required|string|max:255',
+            'description' => 'nullable|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
-            'price' => 'required|integer|min:0',
-            'available' => 'required|in:yes,no',
+            'status' => 'required|in:yes,no',
         ]);
 
         $validated['slug'] = Str::slug($validated['name']);
@@ -40,7 +40,13 @@ class ServiceController extends Controller
 
         Service::create($validated);
 
-        return redirect()->route('backend.services.index')->with('success', 'Service created successfully.');
+        return redirect()->route('management.services.index')->with('success', 'Service created successfully.');
+    }
+
+    public function show(Service $service, $slug = null)
+    {
+        $service->load('category');
+        return view('backend.services.show', compact('service'));
     }
 
     public function edit(Service $service)
@@ -54,9 +60,9 @@ class ServiceController extends Controller
         $validated = $request->validate([
             'category_id' => 'required|exists:categories,id',
             'name' => 'required|string|max:255',
+            'description' => 'nullable|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
-            'price' => 'required|integer|min:0',
-            'available' => 'required|in:yes,no',
+            'status' => 'required|in:yes,no',
         ]);
 
         $validated['slug'] = Str::slug($validated['name']);
@@ -70,7 +76,15 @@ class ServiceController extends Controller
 
         $service->update($validated);
 
-        return redirect()->route('backend.services.index')->with('success', 'Service updated successfully.');
+        return redirect()->route('management.services.index')->with('success', 'Service updated successfully.');
+    }
+
+    public function toggleStatus(Service $service)
+    {
+        $newStatus = ($service->status ?? $service->available) === 'yes' ? 'no' : 'yes';
+        $service->update(['status' => $newStatus]);
+
+        return redirect()->back()->with('success', 'Service status updated successfully.');
     }
 
     public function destroy(Service $service)
@@ -81,6 +95,6 @@ class ServiceController extends Controller
 
         $service->delete();
 
-        return redirect()->route('backend.services.index')->with('success', 'Service deleted successfully.');
+        return redirect()->route('management.services.index')->with('success', 'Service deleted successfully.');
     }
 }

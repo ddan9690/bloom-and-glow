@@ -7,24 +7,21 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
     use AuthorizesRequests;
-
-    // public function __construct()
-    // {
-    //     $this->authorizeResource(User::class, 'user');
-    // }
 
     /**
      * Display a listing of the users.
      */
     public function index()
     {
-        $users = User::with('roles')->latest()->paginate(10);
+        $users = User::with('roles')->latest()->get();
+        $roles = Role::all();
 
-        return view('backend.users.index', compact('users'));
+        return view('backend.users.index', compact('users', 'roles'));
     }
 
     /**
@@ -32,7 +29,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('backend.users.create');
+        $roles = Role::all();
+        return view('backend.users.create', compact('roles'));
     }
 
     /**
@@ -43,20 +41,64 @@ class UserController extends Controller
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'phone' => ['required', 'string', 'max:20', 'unique:users,phone'],
-            'password' => ['required', 'string', 'min:6'],
-            'role' => ['required', 'string', Rule::in(['Admin', 'Staff'])],
+            'role' => ['required', 'string', 'exists:roles,name'],
         ]);
+
+        $currentUser = auth()->user();
+        $isCurrentSuperAdmin = method_exists($currentUser, 'hasRole') && $currentUser->hasRole('super-admin');
+
+        // Prevent non-super-admins from creating a super-admin user
+        if ($validated['role'] === 'super-admin' && !$isCurrentSuperAdmin) {
+            return back()->withInput()->with('error', 'Unauthorized action. Only the System Developer (Super Admin) can assign Super Admin privileges.');
+        }
 
         $user = User::create([
             'name' => $validated['name'],
             'phone' => $validated['phone'],
-            'password' => Hash::make($validated['password']),
+            'password' => Hash::make($validated['phone']), // Password becomes the phone number
         ]);
 
         $user->assignRole($validated['role']);
 
         return redirect()->route('users.index')
-            ->with('success', 'User created successfully.');
+            ->with('success', 'Staff member created successfully.');
+    }
+
+    /**
+     * Update the specified user's role inline.
+     */
+    public function updateRole(Request $request, User $user)
+    {
+        $validated = $request->validate([
+            'role' => ['required', 'string', 'exists:roles,name'],
+        ]);
+
+        $currentUser = auth()->user();
+        $isCurrentSuperAdmin = method_exists($currentUser, 'hasRole') && $currentUser->hasRole('super-admin');
+        $isTargetSuperAdmin = method_exists($user, 'hasRole') && $user->hasRole('super-admin');
+
+        // Prevent modifying a Super Admin account unless the current user is a Super Admin
+        if ($isTargetSuperAdmin && !$isCurrentSuperAdmin) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Unauthorized action. You cannot modify a Super Admin account.'
+            ], 403);
+        }
+
+        // Prevent assigning Super Admin role unless the current user is a Super Admin
+        if ($validated['role'] === 'super-admin' && !$isCurrentSuperAdmin) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Unauthorized action. Only the System Developer can assign Super Admin privileges.'
+            ], 403);
+        }
+
+        $user->syncRoles([$validated['role']]);
+
+        return response()->json([
+            'success' => true,
+            'message' => "Role updated successfully to {$validated['role']}."
+        ]);
     }
 
     /**
@@ -64,7 +106,16 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return view('backend.users.edit', compact('user'));
+        $currentUser = auth()->user();
+        $isCurrentSuperAdmin = method_exists($currentUser, 'hasRole') && $currentUser->hasRole('super-admin');
+        $isTargetSuperAdmin = method_exists($user, 'hasRole') && $user->hasRole('super-admin');
+
+        if ($isTargetSuperAdmin && !$isCurrentSuperAdmin) {
+            return redirect()->route('users.index')->with('error', 'Unauthorized action. You cannot edit a Super Admin account.');
+        }
+
+        $roles = Role::all();
+        return view('backend.users.edit', compact('user', 'roles'));
     }
 
     /**
@@ -72,23 +123,33 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
+        $currentUser = auth()->user();
+        $isCurrentSuperAdmin = method_exists($currentUser, 'hasRole') && $currentUser->hasRole('super-admin');
+        $isTargetSuperAdmin = method_exists($user, 'hasRole') && $user->hasRole('super-admin');
+
+        if ($isTargetSuperAdmin && !$isCurrentSuperAdmin) {
+            return redirect()->route('users.index')->with('error', 'Unauthorized action. You cannot modify a Super Admin account.');
+        }
+
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'phone' => ['required', 'string', 'max:20', Rule::unique('users', 'phone')->ignore($user->id)],
-            'password' => ['nullable', 'string', 'min:6'],
-            'role' => ['required', 'string', Rule::in(['Admin', 'Staff'])],
+            'role' => ['required', 'string', 'exists:roles,name'],
         ]);
+
+        if ($validated['role'] === 'super-admin' && !$isCurrentSuperAdmin) {
+            return back()->withInput()->with('error', 'Unauthorized action. Only the System Developer can assign Super Admin privileges.');
+        }
 
         $user->update([
             'name' => $validated['name'],
             'phone' => $validated['phone'],
-            'password' => !empty($validated['password']) ? Hash::make($validated['password']) : $user->password,
         ]);
 
         $user->syncRoles([$validated['role']]);
 
         return redirect()->route('users.index')
-            ->with('success', 'User updated successfully.');
+            ->with('success', 'Staff member updated successfully.');
     }
 
     /**
@@ -96,13 +157,20 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        if (auth()->id() === $user->id) {
-            return back()->with('error', 'You cannot delete your own account.');
+        $currentUser = auth()->user();
+        $isTargetSuperAdmin = method_exists($user, 'hasRole') && $user->hasRole('super-admin');
+
+        if ($isTargetSuperAdmin) {
+            return back()->with('error', 'Critical security error: The System Developer account cannot be removed.');
+        }
+
+        if ($currentUser->id === $user->id) {
+            return back()->with('error', 'You cannot delete your own active administrative account.');
         }
 
         $user->delete();
 
         return redirect()->route('users.index')
-            ->with('success', 'User deleted successfully.');
+            ->with('success', 'Staff member deleted successfully.');
     }
 }
