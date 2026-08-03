@@ -50,6 +50,10 @@ Route::middleware(['auth'])->group(function () {
         Route::put('/bookings/{booking}/status', [BookingController::class, 'updateStatus'])
             ->middleware('permission:update booking status')
             ->name('bookings.status');
+            
+        Route::put('/bookings/{booking}/reschedule', [BookingController::class, 'reschedule'])
+            ->middleware('permission:update booking status')
+            ->name('bookings.reschedule');
     });
 
     Route::prefix('management')->name('management.')->group(function () {
@@ -69,7 +73,7 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/categories/create', [CategoryController::class, 'create'])->name('categories.create');
             Route::post('/categories', [CategoryController::class, 'store'])->name('categories.store');
             Route::get('/categories/{category}/{slug}', [CategoryController::class, 'show'])->name('categories.show');
-            Route::get('/categories/{category}/edit', [CategoryController::class, 'edit'])->name('categories.edit');
+            Route::get('/categories/{category}/{slug}/edit', [CategoryController::class, 'edit'])->name('categories.edit');
             Route::put('/categories/{category}', [CategoryController::class, 'update'])->name('categories.update');
             Route::delete('/categories/{category}', [CategoryController::class, 'destroy'])->name('categories.destroy');
         });
@@ -79,7 +83,7 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/services/create', [ServiceController::class, 'create'])->name('services.create');
             Route::post('/services', [ServiceController::class, 'store'])->name('services.store');
             Route::get('/services/{service}/{slug}', [ServiceController::class, 'show'])->name('services.show');
-            Route::get('/services/{service}/edit', [ServiceController::class, 'edit'])->name('services.edit');
+            Route::get('/services/{service}/{slug}/edit', [ServiceController::class, 'edit'])->name('services.edit');
             Route::put('/services/{service}', [ServiceController::class, 'update'])->name('services.update');
             Route::patch('/services/{service}/toggle-status', [ServiceController::class, 'toggleStatus'])->name('services.toggle-status');
             Route::delete('/services/{service}', [ServiceController::class, 'destroy'])->name('services.destroy');
@@ -91,6 +95,7 @@ Route::middleware(['auth'])->group(function () {
 
         Route::middleware('permission:manage bookings')->group(function () {
             Route::get('/bookings', [BookingController::class, 'index'])->name('bookings.index');
+            Route::put('/bookings/{booking}/reschedule', [BookingController::class, 'reschedule'])->name('bookings.reschedule');
             Route::apiResource('blocked-booking-slots', BlockedBookingSlotController::class);
         });
     });

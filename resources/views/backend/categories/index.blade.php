@@ -4,27 +4,24 @@
 
 @section('content')
 <!-- Hero Section -->
-<section class="bg-white text-gray-900 overflow-hidden py-8 sm:py-12 lg:py-16 border-b border-gray-100">
+<section class="bg-white text-gray-900 overflow-hidden py-6 sm:py-8 border-b border-gray-100">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6" data-aos="fade-up">
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
-                <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-md bg-purple-50 border border-purple-200 text-purple-800 text-xs sm:text-sm font-medium mb-4">
+                <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-md bg-purple-50 border border-purple-200 text-purple-800 text-xs sm:text-sm font-medium">
                     <i data-lucide="layout-dashboard" class="w-4 h-4 text-purple-600"></i>
                     <span>Admin Control Center</span>
                 </span>
                 
-                <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold font-['Outfit'] tracking-tight text-gray-900">
+                <h1 class="text-2xl sm:text-3xl font-bold font-['Outfit'] tracking-tight text-gray-900 mt-3">
                     Categories Management
                 </h1>
-                <p class="text-sm sm:text-base text-gray-600 font-['Plus_Jakarta_Sans'] mt-2">
-                    Manage your service categories, images, availability, and structural organization.
-                </p>
             </div>
 
-            <!-- Quick Action & Management Hub Buttons -->
-            <div class="flex flex-wrap items-center gap-3">
+            <!-- Quick Action Button -->
+            <div class="flex items-center">
                 <a href="{{ route('management.categories.create') }}" 
-                    class="inline-flex items-center justify-center gap-2 bg-purple-900 hover:bg-purple-800 text-white font-medium px-5 py-3 rounded-xl transition-all shadow-sm text-sm font-['Outfit']">
+                    class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-purple-900 hover:bg-purple-800 text-white font-medium px-5 py-3 rounded-xl transition-all shadow-sm text-sm font-['Outfit']">
                     <i data-lucide="plus" class="w-4 h-4 text-purple-200"></i>
                     <span>Add New Category</span>
                 </a>
@@ -58,19 +55,12 @@
         
         <!-- Categories Table Section -->
         <div class="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
-            <div class="p-6 border-b border-gray-200 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-                <div>
-                    <h3 class="text-lg font-bold font-['Outfit'] text-gray-900">All Categories</h3>
-                    <p class="text-xs text-gray-500 mt-0.5">Comprehensive list of system categories and status overview</p>
-                </div>
-            </div>
-
             <div class="w-full overflow-x-auto">
                 <table class="w-full text-left border-collapse min-w-[650px]">
                     <thead>
                         <tr class="bg-gray-50/75 border-b border-gray-200 text-xs font-semibold uppercase tracking-wider text-gray-600 font-['Outfit']">
                             <th class="py-3.5 px-4">#</th>
-                            <th class="py-3.5 px-4">Image</th>
+                            <th class="py-3.5 px-4">Image / Icon</th>
                             <th class="py-3.5 px-4">Name</th>
                             <th class="py-3.5 px-4">Status</th>
                             <th class="py-3.5 px-4 text-right">Actions</th>
@@ -88,10 +78,12 @@
                                     <img src="{{ $imagePath }}" 
                                          alt="{{ $category->name }}" 
                                          width="45" 
-                                         class="rounded-lg object-cover shadow-sm cursor-pointer hover:opacity-85 transition-opacity"
+                                         class="rounded-lg object-cover shadow-sm cursor-pointer hover:opacity-85 transition-opacity h-11 w-11"
                                          @click="activeImage = '{{ $imagePath }}'; modalOpen = true;">
                                 @else
-                                    <span class="text-xs text-gray-400 italic">No image</span>
+                                    <div class="w-11 h-11 rounded-lg bg-purple-50 border border-purple-100 flex items-center justify-center text-purple-700">
+                                        <i data-lucide="grid" class="w-5 h-5"></i>
+                                    </div>
                                 @endif
                             </td>
                             <td class="py-3.5 px-4 font-bold text-gray-900 font-['Outfit']">
@@ -100,19 +92,31 @@
                                 </a>
                             </td>
                             <td class="py-3.5 px-4">
-                                <span class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium {{ $category->available === 'yes' ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : 'bg-red-50 text-red-700 border border-red-200' }}">
-                                    {{ $category->available === 'yes' ? 'Available' : 'Not Available' }}
-                                </span>
+                                <form action="{{ route('management.categories.update', $category->id) }}" method="POST" id="status-form-{{ $category->id }}">
+                                    @csrf
+                                    @method('PUT')
+                                    <input type="hidden" name="name" value="{{ $category->name }}">
+                                    <input type="hidden" name="available" id="status-input-{{ $category->id }}" value="{{ $category->available }}">
+                                    
+                                    <label class="relative inline-flex items-center cursor-pointer">
+                                        <input type="checkbox" 
+                                               value="{{ $category->available === 'yes' ? 'no' : 'yes' }}" 
+                                               class="sr-only peer" 
+                                               @if($category->available === 'yes') checked @endif
+                                               onchange="confirmToggleStatus(this, '{{ $category->id }}', '{{ $category->available === 'yes' ? 'Not Available' : 'Available' }}')">
+                                        <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-emerald-600"></div>
+                                    </label>
+                                </form>
                             </td>
                             <td class="py-3.5 px-4 text-right space-x-2 whitespace-nowrap">
-                                <a href="{{ route('management.categories.edit', $category->id) }}" class="inline-flex items-center gap-1 px-3 py-1.5 text-xs font-medium text-purple-800 bg-purple-50 border border-purple-200 rounded-lg hover:bg-purple-100 transition-colors">
+                                <a href="{{ route('management.categories.edit', ['category' => $category->id, 'slug' => $category->slug]) }}" class="inline-flex items-center gap-1 px-3 py-1.5 text-xs font-medium text-purple-800 bg-purple-50 border border-purple-200 rounded-lg hover:bg-purple-100 transition-colors">
                                     <i data-lucide="edit-3" class="w-3.5 h-3.5"></i>
                                     <span>Edit</span>
                                 </a>
-                                <form action="{{ route('management.categories.destroy', $category->id) }}" method="POST" class="inline-block" onsubmit="return confirm('Are you sure you want to delete this category?');">
+                                <form action="{{ route('management.categories.destroy', $category->id) }}" method="POST" class="inline-block delete-form">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="inline-flex items-center gap-1 px-3 py-1.5 text-xs font-medium text-red-700 bg-red-50 border border-red-200 rounded-lg hover:bg-red-100 transition-colors">
+                                    <button type="button" onclick="confirmDelete(this)" class="inline-flex items-center gap-1 px-3 py-1.5 text-xs font-medium text-red-700 bg-red-50 border border-red-200 rounded-lg hover:bg-red-100 transition-colors">
                                         <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
                                         <span>Delete</span>
                                     </button>
@@ -173,4 +177,48 @@
         </div>
     </div>
 </section>
+
+@push('scripts')
+<script>
+    function confirmDelete(button) {
+        const form = button.closest('form');
+        Swal.fire({
+            title: 'Are you sure?',
+            text: 'Are you sure you want to delete this category?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#dc2626',
+            cancelButtonColor: '#6b7280',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                form.submit();
+            }
+        });
+    }
+
+    function confirmToggleStatus(checkbox, categoryId, targetStatusText) {
+        const form = document.getElementById('status-form-' + categoryId);
+        const input = document.getElementById('status-input-' + categoryId);
+        
+        Swal.fire({
+            title: 'Change Status',
+            text: `Change status to ${targetStatusText}?`,
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#581c87',
+            cancelButtonColor: '#6b7280',
+            confirmButtonText: 'Yes, change it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                input.value = checkbox.value;
+                form.submit();
+            } else {
+                // Revert checkbox state if canceled
+                checkbox.checked = !checkbox.checked;
+            }
+        });
+    }
+</script>
+@endpush
 @endsection

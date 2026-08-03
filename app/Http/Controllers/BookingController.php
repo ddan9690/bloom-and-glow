@@ -24,13 +24,30 @@ class BookingController extends Controller
     {
         $status = $request->get('status');
 
-        $query = Booking::with(['service', 'statusUpdater'])->latest();
+        $query = Booking::with(['statusUpdater'])->latest();
 
         if ($status && in_array($status, ['pending', 'confirmed', 'completed', 'cancelled', 'rescheduled'])) {
             $query->where('status', $status);
         }
 
-        $bookings = $query->paginate(15)->withQueryString();
+        $bookings = $query->paginate(15)->through(function ($booking) {
+            $serviceNames = 'General Service';
+
+            if (!empty($booking->service_ids)) {
+                $serviceIdsArray = is_array($booking->service_ids)
+                    ? $booking->service_ids
+                    : json_decode($booking->service_ids, true);
+
+                if (is_array($serviceIdsArray) && count($serviceIdsArray) > 0) {
+                    $serviceNames = \App\Models\Service::whereIn('id', $serviceIdsArray)->pluck('name')->implode(', ');
+                }
+            } elseif ($booking->service_id) {
+                $serviceNames = optional($booking->service)->name ?? 'General Service';
+            }
+
+            $booking->formatted_services = $serviceNames !== '' ? $serviceNames : 'General Service';
+            return $booking;
+        })->withQueryString();
 
         // Count stats for filter tabs
         $counts = [
@@ -81,14 +98,12 @@ class BookingController extends Controller
     }
 
     /**
-     * Update the booking status or reschedule details.
+     * Update the booking status.
      */
     public function updateStatus(Request $request, Booking $booking)
     {
         $validated = $request->validate([
             'status' => 'required|in:pending,confirmed,completed,rescheduled,cancelled',
-            'preferred_date' => 'nullable|required_if:status,rescheduled|date',
-            'preferred_time' => 'nullable|required_if:status,rescheduled',
             'admin_notes' => 'nullable|string',
             'ignore_blocks' => 'nullable|boolean',
         ]);
@@ -100,5 +115,34 @@ class BookingController extends Controller
         }
 
         return back()->with('success', 'Booking status updated successfully.');
+    }
+
+    /**
+     * Reschedule the booking date and time.
+     */
+    public function reschedule(Request $request, Booking $booking)
+    {
+        $validated = $request->validate([
+            'preferred_date' => ['required', 'date'],
+            'preferred_time' => ['required', 'string'],
+        ]);
+
+        try {
+            // Capture the initial original date/time if this is the first reschedule
+            if (is_null($booking->original_date)) {
+                $booking->original_date = $booking->preferred_date;
+                $booking->original_time = $booking->preferred_time;
+            }
+
+            $booking->preferred_date = $validated['preferred_date'];
+            $booking->preferred_time = $validated['preferred_time'];
+            $booking->status = 'rescheduled';
+            $booking->status_updated_by = Auth::id();
+            $booking->save();
+        } catch (\Exception $e) {
+            return back()->withErrors(['preferred_date' => $e->getMessage()])->withInput();
+        }
+
+        return back()->with('success', 'Booking successfully rescheduled!');
     }
 }

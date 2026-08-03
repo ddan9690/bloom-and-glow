@@ -41,13 +41,18 @@ class CategoryController extends Controller
 
     public function show(Category $category, $slug = null)
     {
+       
+        if ($slug && $category->slug !== $slug) {
+            return redirect()->route('management.categories.show', ['category' => $category->id, 'slug' => $category->slug]);
+        }
+
         // Load the category with its associated services
         $category->load('services');
 
         return view('backend.categories.show', compact('category'));
     }
 
-    public function edit(Category $category)
+    public function edit(Category $category, $slug = null)
     {
         return view('backend.categories.edit', compact('category'));
     }

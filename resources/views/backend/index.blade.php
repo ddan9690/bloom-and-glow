@@ -3,33 +3,14 @@
 @section('title', "Dashboard | Bloom & Glow Mbita")
 
 @section('content')
-<!-- Dashboard Hero Section -->
-<section class="bg-white text-gray-900 overflow-hidden py-8 sm:py-12 border-b border-gray-100">
+<!-- Dashboard Hero Section (Streamlined & Clean) -->
+<section class="bg-white text-gray-900 overflow-hidden py-6 sm:py-8 border-b border-gray-100">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-            <div>
-                <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-md bg-purple-50 border border-purple-200 text-purple-800 text-xs sm:text-sm font-medium mb-4">
-                    <i data-lucide="layout-dashboard" class="w-4 h-4 text-purple-600"></i>
-                    <span>System Administration Hub</span>
-                </span>
-                
-                <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold font-['Outfit'] tracking-tight text-gray-900">
-                    Welcome back, {{ auth()->user()->name ?? 'Admin' }}! 👋
-                </h1>
-                <p class="text-sm sm:text-base text-gray-600 font-['Plus_Jakarta_Sans'] mt-2">
-                    Here is an overview of appointments, client requests, and system operations.
-                </p>
-            </div>
-
-            <div class="flex items-center gap-3">
-                @can('manage users')
-                <a href="{{ route('management.users.index') }}" 
-                    class="inline-flex items-center justify-center gap-2 bg-purple-800 hover:bg-purple-900 text-white font-medium px-5 py-3 rounded-xl transition-all shadow-sm text-sm font-['Outfit']">
-                    <i data-lucide="users" class="w-4 h-4"></i>
-                    <span>Manage Staff</span>
-                </a>
-                @endcan
-            </div>
+        <div class="flex items-center justify-between">
+            <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-md bg-purple-50 border border-purple-200 text-purple-800 text-xs sm:text-sm font-medium">
+                <i data-lucide="layout-dashboard" class="w-4 h-4 text-purple-600"></i>
+                <span>System Administration Hub</span>
+            </span>
         </div>
     </div>
 </section>
@@ -58,88 +39,85 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         
         <!-- Metrics Grid Cards -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5">
             <!-- Pending Bookings -->
-            <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm flex items-center justify-between">
+            <div class="bg-white p-4 sm:p-6 rounded-2xl border border-gray-200 shadow-sm flex items-center justify-between">
                 <div>
-                    <p class="text-xs font-semibold uppercase tracking-wider text-gray-500 font-['Outfit']">Pending Bookings</p>
-                    <h3 class="text-3xl font-bold font-['Outfit'] text-gray-900 mt-1">{{ $stats['pending'] }}</h3>
+                    <p class="text-[10px] sm:text-xs font-semibold uppercase tracking-wider text-gray-500 font-['Outfit']">Pending Bookings</p>
+                    <h3 class="text-2xl sm:text-3xl font-bold font-['Outfit'] text-gray-900 mt-1">{{ $stats['pending'] }}</h3>
                 </div>
-                <div class="w-12 h-12 rounded-xl bg-amber-50 border border-amber-100 flex items-center justify-center text-amber-600">
-                    <i data-lucide="clock" class="w-6 h-6"></i>
+                <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-amber-50 border border-amber-100 flex items-center justify-center text-amber-600 flex-shrink-0">
+                    <i data-lucide="clock" class="w-5 h-5 sm:w-6 sm:h-6"></i>
                 </div>
             </div>
 
             <!-- Confirmed Bookings -->
-            <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm flex items-center justify-between">
+            <div class="bg-white p-4 sm:p-6 rounded-2xl border border-gray-200 shadow-sm flex items-center justify-between">
                 <div>
-                    <p class="text-xs font-semibold uppercase tracking-wider text-gray-500 font-['Outfit']">Confirmed</p>
-                    <h3 class="text-3xl font-bold font-['Outfit'] text-gray-900 mt-1">{{ $stats['confirmed'] }}</h3>
+                    <p class="text-[10px] sm:text-xs font-semibold uppercase tracking-wider text-gray-500 font-['Outfit']">Confirmed</p>
+                    <h3 class="text-2xl sm:text-3xl font-bold font-['Outfit'] text-gray-900 mt-1">{{ $stats['confirmed'] }}</h3>
                 </div>
-                <div class="w-12 h-12 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center text-blue-600">
-                    <i data-lucide="calendar-check" class="w-6 h-6"></i>
+                <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center text-blue-600 flex-shrink-0">
+                    <i data-lucide="calendar-check" class="w-5 h-5 sm:w-6 sm:h-6"></i>
                 </div>
             </div>
 
             <!-- Completed Appointments -->
-            <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm flex items-center justify-between">
+            <div class="bg-white p-4 sm:p-6 rounded-2xl border border-gray-200 shadow-sm flex items-center justify-between">
                 <div>
-                    <p class="text-xs font-semibold uppercase tracking-wider text-gray-500 font-['Outfit']">Completed</p>
-                    <h3 class="text-3xl font-bold font-['Outfit'] text-gray-900 mt-1">{{ $stats['completed'] }}</h3>
+                    <p class="text-[10px] sm:text-xs font-semibold uppercase tracking-wider text-gray-500 font-['Outfit']">Completed</p>
+                    <h3 class="text-2xl sm:text-3xl font-bold font-['Outfit'] text-gray-900 mt-1">{{ $stats['completed'] }}</h3>
                 </div>
-                <div class="w-12 h-12 rounded-xl bg-emerald-50 border border-emerald-100 flex items-center justify-center text-emerald-600">
-                    <i data-lucide="check-circle-2" class="w-6 h-6"></i>
+                <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-emerald-50 border border-emerald-100 flex items-center justify-center text-emerald-600 flex-shrink-0">
+                    <i data-lucide="check-circle-2" class="w-5 h-5 sm:w-6 sm:h-6"></i>
                 </div>
             </div>
 
             <!-- Total System Users -->
-            <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm flex items-center justify-between">
+            <div class="bg-white p-4 sm:p-6 rounded-2xl border border-gray-200 shadow-sm flex items-center justify-between">
                 <div>
-                    <p class="text-xs font-semibold uppercase tracking-wider text-gray-500 font-['Outfit']">Staff & Users</p>
-                    <h3 class="text-3xl font-bold font-['Outfit'] text-gray-900 mt-1">{{ $stats['total_users'] }}</h3>
+                    <p class="text-[10px] sm:text-xs font-semibold uppercase tracking-wider text-gray-500 font-['Outfit']">Staff & Users</p>
+                    <h3 class="text-2xl sm:text-3xl font-bold font-['Outfit'] text-gray-900 mt-1">{{ $stats['total_users'] }}</h3>
                 </div>
-                <div class="w-12 h-12 rounded-xl bg-purple-50 border border-purple-100 flex items-center justify-center text-purple-700">
-                    <i data-lucide="users" class="w-6 h-6"></i>
+                <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-purple-50 border border-purple-100 flex items-center justify-center text-purple-700 flex-shrink-0">
+                    <i data-lucide="users" class="w-5 h-5 sm:w-6 sm:h-6"></i>
                 </div>
             </div>
         </div>
 
-        <!-- Quick Links Grid Section -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Quick Links Grid Section (Placed right after metrics for optimal accessibility) -->
+        <div class="grid grid-cols-3 gap-3 sm:gap-6">
             @can('manage users')
-            <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm flex items-center justify-between">
+            <a href="{{ route('management.users.index') }}" class="bg-white p-4 sm:p-6 rounded-2xl border border-gray-200 shadow-sm hover:border-purple-300 hover:shadow-md transition-all flex items-center justify-between group">
                 <div>
-                    <h4 class="text-sm font-bold font-['Outfit'] text-gray-900">Staff & Permissions</h4>
-                    <p class="text-xs text-gray-500 mt-1">Register or modify staff clearance levels.</p>
+                    <h4 class="text-xs sm:text-sm font-bold font-['Outfit'] text-gray-900 group-hover:text-purple-800 transition-colors">Staff</h4>
                 </div>
-                <a href="{{ route('management.users.index') }}" class="p-3 bg-purple-50 text-purple-700 rounded-xl hover:bg-purple-100 transition-colors">
-                    <i data-lucide="user-cog" class="w-5 h-5"></i>
-                </a>
-            </div>
+                <div class="p-2 sm:p-3 bg-purple-50 text-purple-700 rounded-xl group-hover:bg-purple-800 group-hover:text-white transition-all flex-shrink-0">
+                    <i data-lucide="user-cog" class="w-4 h-4 sm:w-5 sm:h-5"></i>
+                </div>
+            </a>
             @endcan
 
             @can('manage categories')
-            <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm flex items-center justify-between">
+            <a href="{{ route('management.categories.index') }}" class="bg-white p-4 sm:p-6 rounded-2xl border border-gray-200 shadow-sm hover:border-purple-300 hover:shadow-md transition-all flex items-center justify-between group">
                 <div>
-                    <h4 class="text-sm font-bold font-['Outfit'] text-gray-900">Service Categories</h4>
-                    <p class="text-xs text-gray-500 mt-1">Manage salon offerings and pricing sheets.</p>
+                    <h4 class="text-xs sm:text-sm font-bold font-['Outfit'] text-gray-900 group-hover:text-purple-800 transition-colors">Services</h4>
                 </div>
-                <a href="{{ route('management.categories.index') }}" class="p-3 bg-purple-50 text-purple-700 rounded-xl hover:bg-purple-100 transition-colors">
-                    <i data-lucide="grid" class="w-5 h-5"></i>
-                </a>
-            </div>
+                <div class="p-2 sm:p-3 bg-purple-50 text-purple-700 rounded-xl group-hover:bg-purple-800 group-hover:text-white transition-all flex-shrink-0">
+                    <i data-lucide="grid" class="w-4 h-4 sm:w-5 sm:h-5"></i>
+                </div>
+            </a>
             @endcan
 
             @can('manage services')
-            <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm flex items-center justify-between">
+            <a href="{{ route('management.services.index') }}" class="bg-white p-4 sm:p-6 rounded-2xl border border-gray-200 shadow-sm hover:border-purple-300 hover:shadow-md transition-all flex items-center justify-between group">
                 <div>
-                    <h4 class="text-sm font-bold font-['Outfit'] text-gray-900">Manage Services</h4>
-                    <p class="text-xs text-gray-500 mt-1">Configure salon treatments and active rates.</p>
+                    <h4 class="text-xs sm:text-sm font-bold font-['Outfit'] text-gray-900 group-hover:text-purple-800 transition-colors">Booking Settings</h4>
                 </div>
-                <a href="{{ route('management.services.index') }}" class="p-3 bg-purple-50 text-purple-700 rounded-xl hover:bg-purple-100 transition-colors">
-                    <i data-lucide="scissors" class="w-5 h-5"></i>
-                </a>
-            </div>
+                <div class="p-2 sm:p-3 bg-purple-50 text-purple-700 rounded-xl group-hover:bg-purple-800 group-hover:text-white transition-all flex-shrink-0">
+                    <i data-lucide="scissors" class="w-4 h-4 sm:w-5 sm:h-5"></i>
+                </div>
+            </a>
             @endcan
         </div>
 
@@ -147,8 +125,7 @@
         <div class="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
             <div class="p-6 border-b border-gray-200 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                 <div>
-                    <h3 class="text-lg font-bold font-['Outfit'] text-gray-900">Recent Client Bookings</h3>
-                    <p class="text-xs text-gray-500 mt-0.5">Latest appointment requests received through the portal</p>
+                    <h3 class="text-lg font-bold font-['Outfit'] text-gray-900">Recent Bookings</h3>
                 </div>
                 <a href="{{ route('management.bookings.index') }}" class="text-xs font-semibold text-purple-800 hover:text-purple-900 flex items-center gap-1 font-['Outfit']">
                     <span>View All Bookings</span>

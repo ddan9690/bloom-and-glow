@@ -49,7 +49,7 @@ class ServiceController extends Controller
         return view('backend.services.show', compact('service'));
     }
 
-    public function edit(Service $service)
+    public function edit(Service $service, $slug = null)
     {
         $categories = Category::where('available', 'yes')->get();
         return view('backend.services.edit', compact('service', 'categories'));
@@ -79,7 +79,7 @@ class ServiceController extends Controller
         return redirect()->route('management.services.index')->with('success', 'Service updated successfully.');
     }
 
-    public function toggleStatus(Service $service)
+    public function toggleStatus(Service $service, $slug = null)
     {
         $newStatus = ($service->status ?? $service->available) === 'yes' ? 'no' : 'yes';
         $service->update(['status' => $newStatus]);
@@ -87,7 +87,7 @@ class ServiceController extends Controller
         return redirect()->back()->with('success', 'Service status updated successfully.');
     }
 
-    public function destroy(Service $service)
+    public function destroy(Service $service, $slug = null)
     {
         if ($service->image) {
             Storage::disk('public')->delete($service->image);
