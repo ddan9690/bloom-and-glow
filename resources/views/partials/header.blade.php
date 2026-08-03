@@ -37,12 +37,6 @@
             <a href="{{ url('/about') }}" class="hover:text-purple-800 transition">About Us</a>
             <a href="{{ url('/faq') }}" class="hover:text-purple-800 transition">FAQ</a>
             <a href="{{ url('/contact') }}" class="hover:text-purple-800 transition">Contact</a>
-            
-            <!-- Retained Bookings Navigation Link -->
-            <div class="h-4 w-px bg-purple-200 mx-1"></div>
-            <a href="#" class="text-purple-800 hover:text-purple-900 transition flex items-center gap-1 font-semibold">
-                <i data-lucide="calendar-check" class="w-4 h-4"></i> Bookings
-            </a>
         </nav>
 
         <!-- Right Action (Book Now or Auth) -->
@@ -63,7 +57,7 @@
                 </form>
             @endguest
             <a href="{{ route('book') }}" class="inline-flex items-center justify-center px-5 py-2.5 rounded-xl bg-purple-900 text-white text-sm font-medium hover:bg-purple-800 transition shadow-sm shadow-purple-200">
-                Book Reservation
+                Book Now
             </a>
         </div>
 
@@ -89,16 +83,9 @@
             <a href="{{ url('/contact') }}" class="block text-gray-700 font-medium hover:text-purple-800">Contact</a>
         </div>
 
-        <div class="space-y-3 pb-4 border-b border-purple-50">
-            <p class="text-xs font-bold uppercase tracking-wider text-purple-400 font-['Outfit']">Management Section</p>
-            <a href="#" class="block text-purple-800 font-medium hover:text-purple-900 flex items-center gap-1.5">
-                <i data-lucide="calendar-check" class="w-4 h-4"></i> Bookings
-            </a>
-        </div>
-
         <div class="pt-2 space-y-2">
             <a href="{{ route('book') }}" class="w-full text-center block px-5 py-3 rounded-xl bg-purple-900 text-white font-medium shadow-md shadow-purple-200 hover:bg-purple-800 transition">
-                Book Reservation
+                Book Now
             </a>
             @guest
                 <a href="{{ route('login') }}" class="w-full text-center block px-5 py-2.5 rounded-xl bg-purple-50 text-purple-800 font-medium hover:bg-purple-100 transition">
