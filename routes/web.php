@@ -26,6 +26,10 @@ Route::get('/faq', function () {
     return view('pages.faq');
 })->name('faq');
 
+Route::get('/services', function () {
+    return view('pages.services');
+})->name('services');
+
 Route::get('/book', [BookingController::class, 'create'])->name('book');
 Route::post('/book', [BookingController::class, 'store'])->name('book.store');
 

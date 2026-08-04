@@ -33,7 +33,7 @@
                         <span>Book Now</span>
                     </a>
                     
-                    <a href="#" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-gray-100 hover:bg-gray-200 text-gray-800 font-medium px-6 py-3.5 rounded-lg transition-all text-base">
+                    <a href="{{ route('services') }}" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-gray-100 hover:bg-gray-200 text-gray-800 font-medium px-6 py-3.5 rounded-lg transition-all text-base">
                         <i data-lucide="grid" class="w-5 h-5 text-gray-600"></i>
                         <span>Our Services</span>
                     </a>
@@ -218,7 +218,7 @@
         </div>
 
         <div class="text-center mt-10" data-aos="fade-up">
-            <a href="{{ route('book') }}" class="inline-flex items-center gap-2 bg-gray-100 hover:bg-gray-200 text-gray-800 font-medium px-6 py-3 rounded-lg transition-all text-sm">
+            <a href="{{ route('services') }}" class="inline-flex items-center gap-2 bg-gray-100 hover:bg-gray-200 text-gray-800 font-medium px-6 py-3 rounded-lg transition-all text-sm">
                 <span>Our Services</span>
                 <i data-lucide="arrow-right" class="w-4 h-4"></i>
             </a>
