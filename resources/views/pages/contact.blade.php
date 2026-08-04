@@ -42,8 +42,8 @@
                             <div>
                                 <h3 class="font-bold font-['Outfit'] text-gray-900 text-base mb-1">Location</h3>
                                 <p class="text-gray-600 font-['Plus_Jakarta_Sans'] text-sm leading-relaxed">
-                                    Mbita-Homa Bay Highway<br>
-                                    Conveniently near Ayman Supermarket<br>
+                                    Junction Katol<br>
+                                    Next to Ayman Supermarket<br>
                                     Mbita, Homa Bay County
                                 </p>
                             </div>
@@ -55,9 +55,10 @@
                                 <i data-lucide="phone" class="w-5 h-5"></i>
                             </div>
                             <div>
-                                <h3 class="font-bold font-['Outfit'] text-gray-900 text-base mb-1">Phone Number</h3>
-                                <p class="text-gray-600 font-['Plus_Jakarta_Sans'] text-sm">
-                                    +254 712 345 678
+                                <h3 class="font-bold font-['Outfit'] text-gray-900 text-base mb-1">Phone Numbers</h3>
+                                <p class="text-gray-600 font-['Plus_Jakarta_Sans'] text-sm leading-relaxed">
+                                    0706031638<br>
+                                    0715539964
                                 </p>
                             </div>
                         </div>
@@ -68,17 +69,16 @@
                                 <i data-lucide="clock" class="w-5 h-5"></i>
                             </div>
                             <div>
-                                <h3 class="font-bold font-['Outfit'] text-gray-900 text-base mb-1">Working Hours</h3>
-                                <p class="text-gray-600 font-['Plus_Jakarta_Sans'] text-sm">
-                                    Monday – Saturday: 8:00 AM – 7:00 PM<br>
-                                    Sunday: 10:00 AM – 6:00 PM
+                                <h3 class="font-bold font-['Outfit'] text-gray-900 text-base mb-1">Working Days</h3>
+                                <p class="text-gray-600 font-['Plus_Jakarta_Sans'] text-sm leading-relaxed">
+                                    Monday, Tuesday, Wednesday, Thursday, Friday, and Sunday
                                 </p>
                             </div>
                         </div>
                     </div>
 
                     <div class="pt-6 border-t border-gray-100">
-                        <a href="#" class="w-full inline-flex items-center justify-center gap-2 bg-purple-900 hover:bg-purple-800 text-white font-medium px-6 py-3.5 rounded-xl transition-all shadow-sm text-sm">
+                        <a href="{{ route('book') }}" class="w-full inline-flex items-center justify-center gap-2 bg-purple-900 hover:bg-purple-800 text-white font-medium px-6 py-3.5 rounded-xl transition-all shadow-sm text-sm">
                             <i data-lucide="calendar-check" class="w-4 h-4 text-purple-200"></i>
                             <span>Book an Appointment Slot</span>
                         </a>
@@ -124,7 +124,7 @@
                                     </div>
                                     <input type="tel" id="phone" name="phone" required
                                         class="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-300 focus:border-purple-800 focus:ring-1 focus:ring-purple-800 text-sm text-gray-900 bg-gray-50/50 outline-none"
-                                        placeholder="0712345678">
+                                        placeholder="0706031638">
                                 </div>
                             </div>
                         </div>

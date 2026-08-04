@@ -24,29 +24,28 @@
                         <div>
                             <h3 class="font-bold font-['Outfit'] text-gray-900 text-base mb-1">Physical Location</h3>
                             <p class="text-gray-600 text-sm leading-relaxed">
-                                Along the Mbita-Homa Bay Highway, <br>
-                                Right next to Ayman Supermarket, Mbita.
+                                Junction Katol<br>
+                                Next to Ayman Supermarket, Mbita.
                             </p>
                         </div>
                     </div>
 
-                    <!-- Working Hours Card -->
+                    <!-- Working Days Card -->
                     <div class="flex items-start gap-4 p-4 rounded-xl bg-gray-50 border border-gray-200">
                         <div class="w-10 h-10 rounded-lg bg-purple-100 text-purple-800 flex items-center justify-center flex-shrink-0">
                             <i data-lucide="clock" class="w-5 h-5"></i>
                         </div>
                         <div>
-                            <h3 class="font-bold font-['Outfit'] text-gray-900 text-base mb-1">Working Hours</h3>
+                            <h3 class="font-bold font-['Outfit'] text-gray-900 text-base mb-1">Working Days</h3>
                             <p class="text-gray-600 text-sm leading-relaxed">
-                                Monday – Saturday: 8:00 AM – 8:00 PM <br>
-                                Sunday: 10:00 AM – 6:00 PM
+                                Monday, Tuesday, Wednesday, Thursday, Friday, and Sunday
                             </p>
                         </div>
                     </div>
                 </div>
 
                 <div class="mt-8">
-                    <a href="#" class="inline-flex items-center gap-2 bg-purple-900 hover:bg-purple-800 text-white font-medium px-6 py-3 rounded-lg shadow-sm transition-all text-sm">
+                    <a href="{{ route('book') }}" class="inline-flex items-center gap-2 bg-purple-900 hover:bg-purple-800 text-white font-medium px-6 py-3 rounded-lg shadow-sm transition-all text-sm">
                         <i data-lucide="calendar-check" class="w-4 h-4 text-purple-200"></i>
                         <span>Book Slot Before Visiting</span>
                     </a>
@@ -66,12 +65,12 @@
                             </div>
                             <h3 class="text-xl font-bold font-['Outfit']">Bloom & Glow Mbita Branch</h3>
                             <p class="text-purple-200 text-sm font-['Plus_Jakarta_Sans'] leading-relaxed">
-                                Conveniently located along the main Mbita-Homa Bay Highway, adjacent to Ayman Supermarket for easy accessibility and secure parking.
+                                Conveniently located at Junction Katol, adjacent to Ayman Supermarket for easy accessibility and secure parking.
                             </p>
                             <div class="pt-2">
                                 <span class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white/10 backdrop-blur-md text-xs font-medium border border-white/20 text-white">
                                     <i data-lucide="map-pin" class="w-3.5 h-3.5 text-pink-300"></i>
-                                    Next to Ayman Supermarket
+                                    Junction Katol, Next to Ayman Supermarket
                                 </span>
                             </div>
                         </div>

@@ -16,9 +16,9 @@
                 </div>
                 
                 <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold font-['Outfit'] tracking-tight leading-tight text-gray-900 mb-6">
-                    Elevate Your Look, <br class="hidden sm:inline">
-                    <span class="text-purple-800">
-                        Embrace Your Glow.
+                    Tunaunda na Style, <br class="hidden sm:inline">
+                    <span class="text-purple-800 font-['Outfit'] italic">
+                        Usibahatishe.
                     </span>
                 </h1>
                 
@@ -28,14 +28,14 @@
 
                 <!-- Action Buttons -->
                 <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-10">
-                    <a href="{{ route('book') }}" class="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-purple-900 hover:bg-purple-800 text-white font-medium px-8 py-3.5 rounded-lg shadow-sm transition-all text-base">
+                    <a href="{{ route('book') }}" class="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-purple-900 hover:bg-purple-800 text-white font-medium px-8 py-3.5 rounded-lg shadow-sm transition-all text-base group">
                         <i data-lucide="calendar-check" class="w-5 h-5 text-purple-200"></i>
-                        <span>Book Your Appointment Now</span>
+                        <span>Book Now</span>
                     </a>
                     
                     <a href="#" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-gray-100 hover:bg-gray-200 text-gray-800 font-medium px-6 py-3.5 rounded-lg transition-all text-base">
                         <i data-lucide="grid" class="w-5 h-5 text-gray-600"></i>
-                        <span>Explore Our Services</span>
+                        <span>Our Services</span>
                     </a>
                 </div>
 
@@ -46,8 +46,8 @@
                         <p class="text-xs sm:text-sm text-gray-500">Dedicated Care</p>
                     </div>
                     <div>
-                        <p class="text-2xl sm:text-3xl font-bold font-['Outfit'] text-purple-900">Instant</p>
-                        <p class="text-xs sm:text-sm text-gray-500">Slot Locking</p>
+                        <p class="text-2xl sm:text-3xl font-bold font-['Outfit'] text-purple-900">Book Online</p>
+                        <p class="text-xs sm:text-sm text-gray-500">Convenience</p>
                     </div>
                     <div>
                         <p class="text-2xl sm:text-3xl font-bold font-['Outfit'] text-purple-900">Expert</p>
@@ -60,7 +60,7 @@
             <div class="lg:col-span-5 relative" data-aos="fade-left">
                 <div class="relative mx-auto max-w-md lg:max-w-none">
                     <div class="rounded-xl overflow-hidden shadow-md border border-gray-200 aspect-[4/5] bg-gray-100">
-                        <img src="{{ asset('images/young-adult-man-getting-a-hair-and-beard-styling-and-dressing-treatment.jpg') }}" 
+                        <img src="{{ asset('images/wycliffe-potrait-1.jpg') }}" 
                              alt="Professional Grooming at Bloom & Glow Mbita" 
                              class="w-full h-full object-cover">
                     </div>
@@ -69,11 +69,11 @@
                     <div class="absolute -bottom-6 -left-6 bg-white p-4 rounded-xl shadow-lg border border-gray-100 max-w-[220px] hidden sm:block">
                         <div class="flex items-center gap-3">
                             <div class="w-10 h-10 rounded-lg bg-purple-50 flex items-center justify-center text-purple-800 flex-shrink-0">
-                                <i data-lucide="shield-check" class="w-5 h-5"></i>
+                                <i data-lucide="award" class="w-5 h-5"></i>
                             </div>
                             <div>
-                                <p class="text-xs font-semibold text-gray-900">Guaranteed Slot</p>
-                                <p class="text-[11px] text-gray-500">Zero waiting queues</p>
+                                <p class="text-xs font-semibold text-gray-900">Trust Bloom & Glow</p>
+                                <p class="text-[11px] text-gray-500">Master Craftsmanship</p>
                             </div>
                         </div>
                     </div>
@@ -91,24 +91,24 @@
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
                 <div class="lg:col-span-8 text-center lg:text-left">
                     <span class="inline-block px-3 py-1 bg-purple-100 text-purple-800 rounded-md text-xs font-semibold uppercase tracking-wider mb-3">
-                        Seamless & Convenient
+                        Usibahatishe Na Mwembe Lako
                     </span>
                     <h2 class="text-2xl sm:text-3xl font-bold font-['Outfit'] text-gray-900 mb-3">
-                        Book from the Comfort of Your Home
+                        Trust Bloom & Glow — Weka Nafasi Yako Kabla Ufike!
                     </h2>
                     <p class="text-gray-600 font-['Plus_Jakarta_Sans'] text-base max-w-2xl leading-relaxed">
-                        Skip the phone calls and long waits. Select your preferred service, lock in your exact time slot instantly, and let our specialists reserve maximum dedicated care exclusively for you.
+                        Skip the phone calls and long waits. Select your preferred service, enjoy efficient online scheduling from wherever you are, and let our specialists have everything ready for you.
                     </p>
                 </div>
 
                 <div class="lg:col-span-4 flex flex-col sm:flex-row lg:flex-col justify-center items-center gap-3">
                     <a href="{{ route('book') }}" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-purple-900 hover:bg-purple-800 text-white font-medium px-6 py-3.5 rounded-lg shadow-sm transition-all text-center text-base">
                         <i data-lucide="calendar-plus" class="w-5 h-5 text-purple-200"></i>
-                        <span>Start Your Booking</span>
+                        <span>Book Now</span>
                     </a>
                     <span class="text-xs text-gray-500 flex items-center gap-1.5 font-medium">
                         <i data-lucide="clock" class="w-3.5 h-3.5 text-purple-700"></i>
-                        Takes less than 1 minute to secure your slot
+                        Takes less than 1 minute to secure your session
                     </span>
                 </div>
             </div>
@@ -120,23 +120,23 @@
 <section class="py-16 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center max-w-3xl mx-auto mb-12" data-aos="fade-up">
-            <h2 class="text-xs sm:text-sm font-semibold text-purple-800 uppercase tracking-widest mb-2">Our Signature Offerings</h2>
+            <h2 class="text-xs sm:text-sm font-semibold text-purple-800 uppercase tracking-widest mb-2 font-['Outfit']">Our Signature Offerings</h2>
             <h3 class="text-3xl font-bold font-['Outfit'] text-gray-900 mb-3">Designed for Your Ultimate Refresh</h3>
             <p class="text-gray-600 font-['Plus_Jakarta_Sans'] text-base">Experience professional grooming and styling treatments tailored to bring out your absolute best.</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- Service Card 1 -->
+            <!-- Service Card 1: Hair Cut & Dye -->
             <div class="bg-white rounded-xl overflow-hidden border border-gray-200 hover:border-purple-300 transition-all duration-300 group shadow-sm" data-aos="fade-up" data-aos-delay="100">
                 <div class="h-56 overflow-hidden relative bg-gray-100">
-                    <img src="{{ asset('images/a-woman-having-her-hair-washed-on-a-salon-sink.jpg') }}" alt="Hair Treatment" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                    <span class="absolute top-3 left-3 text-xs font-medium px-2.5 py-1 rounded bg-white/90 text-gray-800 shadow-sm">Hair Care</span>
+                    <img src="{{ asset('images/man-getting-clean-hair-cut.jpg') }}" alt="Hair Cut & Dye" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    <span class="absolute top-3 left-3 text-xs font-medium px-2.5 py-1 rounded bg-white/90 text-gray-800 shadow-sm">Hair Studio</span>
                 </div>
                 <div class="p-6">
-                    <h4 class="text-lg font-bold font-['Outfit'] text-gray-900 mb-2">Luxury Wash & Styling</h4>
-                    <p class="text-gray-600 text-sm mb-6 line-clamp-2">Revitalize your hair with deep-cleansing washes, professional treatments, and sleek styling designed to turn heads.</p>
+                    <h4 class="text-lg font-bold font-['Outfit'] text-gray-900 mb-2">Hair Cut & Dye</h4>
+                    <p class="text-gray-600 text-sm mb-6 line-clamp-2">Get precision cuts tailored to your structure paired with vibrant, professional coloring treatments that make a statement.</p>
                     <div class="flex items-center justify-between pt-4 border-t border-gray-100">
-                        <span class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Professional Care</span>
+                        <span class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Expert Styling</span>
                         <a href="{{ route('book') }}" class="inline-flex items-center gap-1 text-sm font-semibold text-purple-800 hover:text-purple-900">
                             Book Slot <i data-lucide="arrow-right" class="w-4 h-4"></i>
                         </a>
@@ -144,17 +144,53 @@
                 </div>
             </div>
 
-            <!-- Service Card 2 -->
+            <!-- Service Card 2: Steaming -->
+            <div class="bg-white rounded-xl overflow-hidden border border-gray-200 hover:border-purple-300 transition-all duration-300 group shadow-sm" data-aos="fade-up" data-aos-delay="150">
+                <div class="h-56 overflow-hidden relative bg-gray-100">
+                    <img src="{{ asset('images/woman-getting-her-hair-shampoo.jpg') }}" alt="Hair and Scalp Steaming" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    <span class="absolute top-3 left-3 text-xs font-medium px-2.5 py-1 rounded bg-white/90 text-gray-800 shadow-sm">Hair Treatment</span>
+                </div>
+                <div class="p-6">
+                    <h4 class="text-lg font-bold font-['Outfit'] text-gray-900 mb-2">Deep Scalp & Hair Steaming</h4>
+                    <p class="text-gray-600 text-sm mb-6 line-clamp-2">Restore ultimate moisture, open up hair cuticles for maximum nutrient absorption, and enjoy deep relaxation.</p>
+                    <div class="flex items-center justify-between pt-4 border-t border-gray-100">
+                        <span class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Rejuvenating Care</span>
+                        <a href="{{ route('book') }}" class="inline-flex items-center gap-1 text-sm font-semibold text-purple-800 hover:text-purple-900">
+                            Book Slot <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Service Card 3: Facial -->
             <div class="bg-white rounded-xl overflow-hidden border border-gray-200 hover:border-purple-300 transition-all duration-300 group shadow-sm" data-aos="fade-up" data-aos-delay="200">
                 <div class="h-56 overflow-hidden relative bg-gray-100">
-                    <img src="{{ asset('images/person-wearing-a-latex-gloves-doing-manicure.jpg') }}" alt="Manicure & Nails" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    <img src="{{ asset('images/young-adult-man-getting-a-hair-and-beard-styling-and-dressing-treatment.jpg') }}" alt="Facial Treatment" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    <span class="absolute top-3 left-3 text-xs font-medium px-2.5 py-1 rounded bg-white/90 text-gray-800 shadow-sm">Skin Care</span>
+                </div>
+                <div class="p-6">
+                    <h4 class="text-lg font-bold font-['Outfit'] text-gray-900 mb-2">Refreshing Facial Treatment</h4>
+                    <p class="text-gray-600 text-sm mb-6 line-clamp-2">Purify, exfoliate, and revitalize your skin with custom facial therapies designed to reveal your natural radiance.</p>
+                    <div class="flex items-center justify-between pt-4 border-t border-gray-100">
+                        <span class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Glowing Skin</span>
+                        <a href="{{ route('book') }}" class="inline-flex items-center gap-1 text-sm font-semibold text-purple-800 hover:text-purple-900">
+                            Book Slot <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Service Card 4: Manicure -->
+            <div class="bg-white rounded-xl overflow-hidden border border-gray-200 hover:border-purple-300 transition-all duration-300 group shadow-sm md:col-span-1 lg:col-span-1.5" data-aos="fade-up" data-aos-delay="250">
+                <div class="h-56 overflow-hidden relative bg-gray-100">
+                    <img src="{{ asset('images/person-wearing-a-latex-gloves-doing-manicure.jpg') }}" alt="Manicure Service" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                     <span class="absolute top-3 left-3 text-xs font-medium px-2.5 py-1 rounded bg-white/90 text-gray-800 shadow-sm">Nail Studio</span>
                 </div>
                 <div class="p-6">
-                    <h4 class="text-lg font-bold font-['Outfit'] text-gray-900 mb-2">Immaculate Manicures</h4>
-                    <p class="text-gray-600 text-sm mb-6 line-clamp-2">Precision nail care, expert polishing, and creative color palettes to give your hands a pristine, polished aesthetic.</p>
+                    <h4 class="text-lg font-bold font-['Outfit'] text-gray-900 mb-2">Immaculate Manicure</h4>
+                    <p class="text-gray-600 text-sm mb-6 line-clamp-2">Precision nail shaping, cuticle care, and flawless polish application to keep your hands looking pristine and elegant.</p>
                     <div class="flex items-center justify-between pt-4 border-t border-gray-100">
-                        <span class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Professional Care</span>
+                        <span class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Nail Care</span>
                         <a href="{{ route('book') }}" class="inline-flex items-center gap-1 text-sm font-semibold text-purple-800 hover:text-purple-900">
                             Book Slot <i data-lucide="arrow-right" class="w-4 h-4"></i>
                         </a>
@@ -162,17 +198,17 @@
                 </div>
             </div>
 
-            <!-- Service Card 3 -->
-            <div class="bg-white rounded-xl overflow-hidden border border-gray-200 hover:border-purple-300 transition-all duration-300 group shadow-sm" data-aos="fade-up" data-aos-delay="300">
+            <!-- Service Card 5: Pedicure -->
+            <div class="bg-white rounded-xl overflow-hidden border border-gray-200 hover:border-purple-300 transition-all duration-300 group shadow-sm md:col-span-1 lg:col-span-1.5" data-aos="fade-up" data-aos-delay="300">
                 <div class="h-56 overflow-hidden relative bg-gray-100">
-                    <img src="{{ asset('images/young-adult-man-getting-a-hair-and-beard-styling-and-dressing-treatment.jpg') }}" alt="Grooming" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                    <span class="absolute top-3 left-3 text-xs font-medium px-2.5 py-1 rounded bg-white/90 text-gray-800 shadow-sm">Men & Women</span>
+                    <img src="{{ asset('images/bloom-hand-nails.jpg') }}" alt="Pedicure Service" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    <span class="absolute top-3 left-3 text-xs font-medium px-2.5 py-1 rounded bg-white/90 text-gray-800 shadow-sm">Foot Care</span>
                 </div>
                 <div class="p-6">
-                    <h4 class="text-lg font-bold font-['Outfit'] text-gray-900 mb-2">Precision Grooming</h4>
-                    <p class="text-gray-600 text-sm mb-6 line-clamp-2">Sharp cuts, beard styling, and complete grooming treatments delivered with absolute precision and hygiene.</p>
+                    <h4 class="text-lg font-bold font-['Outfit'] text-gray-900 mb-2">Luxurious Pedicure</h4>
+                    <p class="text-gray-600 text-sm mb-6 line-clamp-2">Treat your feet to ultimate relaxation, deep scrubbing, smoothing, and professional care for lighter, fresher steps.</p>
                     <div class="flex items-center justify-between pt-4 border-t border-gray-100">
-                        <span class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Professional Care</span>
+                        <span class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Foot Wellness</span>
                         <a href="{{ route('book') }}" class="inline-flex items-center gap-1 text-sm font-semibold text-purple-800 hover:text-purple-900">
                             Book Slot <i data-lucide="arrow-right" class="w-4 h-4"></i>
                         </a>
@@ -183,7 +219,7 @@
 
         <div class="text-center mt-10" data-aos="fade-up">
             <a href="{{ route('book') }}" class="inline-flex items-center gap-2 bg-gray-100 hover:bg-gray-200 text-gray-800 font-medium px-6 py-3 rounded-lg transition-all text-sm">
-                <span>View Complete Services List</span>
+                <span>Our Services</span>
                 <i data-lucide="arrow-right" class="w-4 h-4"></i>
             </a>
         </div>
@@ -209,23 +245,23 @@
 
             <div class="lg:col-span-6" data-aos="fade-left">
                 <span class="inline-block px-3 py-1 bg-purple-100 text-purple-800 rounded-md text-xs font-semibold uppercase tracking-wider mb-3">
-                    The Bloom & Glow Difference
+                    Trust Bloom & Glow
                 </span>
                 <h2 class="text-3xl font-bold font-['Outfit'] text-gray-900 mb-4">
-                    Where Luxury Meets Personal Attention in Mbita
+                    Why Bloom?
                 </h2>
                 <p class="text-gray-600 font-['Plus_Jakarta_Sans'] mb-8 leading-relaxed">
-                    We believe beauty and grooming are deeply personal. That's why every visit to Bloom & Glow is structured around you—combining top-tier hygiene, modern equipment, experienced professionals, and guaranteed schedule reservation slots.
+                    We believe beauty and grooming are deeply personal. That's why every visit to Bloom & Glow is structured around you—combining top-tier hygiene, modern equipment, experienced professionals, and streamlined booking efficiency.
                 </p>
 
                 <div class="space-y-4">
                     <div class="flex items-start gap-4">
                         <div class="w-9 h-9 rounded-lg bg-purple-100 text-purple-800 flex items-center justify-center flex-shrink-0 mt-0.5">
-                            <i data-lucide="check-circle-2" class="w-5 h-5"></i>
+                            <i data-lucide="award" class="w-5 h-5"></i>
                         </div>
                         <div>
-                            <h3 class="font-bold font-['Outfit'] text-gray-900 text-base">Instant Slot Locking</h3>
-                            <p class="text-gray-600 text-sm">When you book through our platform, your time is strictly reserved. No overbooking, no waiting around.</p>
+                            <h3 class="font-bold font-['Outfit'] text-gray-900 text-base">Uncompromised Quality & Excellence</h3>
+                            <p class="text-gray-600 text-sm">We take pride in exceptional craftsmanship, delivering meticulous attention to detail on every single styling and grooming session.</p>
                         </div>
                     </div>
 
@@ -252,7 +288,7 @@
 
                 <div class="mt-8">
                     <a href="{{ route('book') }}" class="inline-flex items-center gap-2 bg-purple-900 hover:bg-purple-800 text-white font-medium px-6 py-3 rounded-lg shadow-sm transition-all text-sm">
-                        <span>Book Your Session Now</span>
+                        <span>Book Now</span>
                         <i data-lucide="calendar" class="w-4 h-4"></i>
                     </a>
                 </div>
@@ -267,14 +303,16 @@
 <!-- Final Bottom CTA Section -->
 <section class="py-16 bg-white text-gray-900 text-center border-t border-gray-200">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8" data-aos="fade-up">
-        <h2 class="text-3xl font-bold font-['Outfit'] mb-4 text-gray-900">Ready to Experience the Ultimate Glow?</h2>
+        <h2 class="text-3xl sm:text-4xl font-bold font-['Outfit'] tracking-tight mb-4 text-gray-900">
+            Usibahatishe, <span class="text-purple-800 italic font-['Outfit']">Trust Bloom & Glow!</span>
+        </h2>
         <p class="text-gray-600 font-['Plus_Jakarta_Sans'] text-base mb-8 max-w-xl mx-auto">
             Secure your appointment today and let Mbita's top beauty and grooming specialists treat you to unmatched dedicated care.
         </p>
         <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
             <a href="{{ route('book') }}" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-purple-900 hover:bg-purple-800 text-white font-medium px-8 py-3.5 rounded-lg shadow-sm transition-all text-base">
                 <i data-lucide="calendar-check" class="w-5 h-5 text-purple-200"></i>
-                <span>Book Appointment Now</span>
+                <span>Book Now</span>
             </a>
             <a href="{{ url('/contact') }}" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-gray-100 hover:bg-gray-200 text-gray-800 font-medium px-8 py-3.5 rounded-lg transition-all text-base">
                 <i data-lucide="map-pin" class="w-5 h-5 text-gray-600"></i>
