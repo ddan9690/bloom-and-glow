@@ -16,7 +16,7 @@
                 </div>
                 
                 <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold font-['Outfit'] tracking-tight leading-tight text-gray-900 mb-6">
-                    Tunaunda na Style, <br class="hidden sm:inline">
+                    Style with Precision, <br class="hidden sm:inline">
                     <span class="text-purple-800 font-['Outfit'] italic">
                         Usibahatishe.
                     </span>
@@ -91,10 +91,10 @@
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
                 <div class="lg:col-span-8 text-center lg:text-left">
                     <span class="inline-block px-3 py-1 bg-purple-100 text-purple-800 rounded-md text-xs font-semibold uppercase tracking-wider mb-3">
-                        Usibahatishe Na Mwembe Lako
+                        Leave Nothing to Chance
                     </span>
                     <h2 class="text-2xl sm:text-3xl font-bold font-['Outfit'] text-gray-900 mb-3">
-                        Trust Bloom & Glow — Weka Nafasi Yako Kabla Ufike!
+                        Trust Bloom & Glow — From wherever you are
                     </h2>
                     <p class="text-gray-600 font-['Plus_Jakarta_Sans'] text-base max-w-2xl leading-relaxed">
                         Skip the phone calls and long waits. Select your preferred service, enjoy efficient online scheduling from wherever you are, and let our specialists have everything ready for you.
@@ -181,13 +181,13 @@
             </div>
 
             <!-- Service Card 4: Manicure -->
-            <div class="bg-white rounded-xl overflow-hidden border border-gray-200 hover:border-purple-300 transition-all duration-300 group shadow-sm md:col-span-1 lg:col-span-1.5" data-aos="fade-up" data-aos-delay="250">
+            <div class="bg-white rounded-xl overflow-hidden border border-gray-200 hover:border-purple-300 transition-all duration-300 group shadow-sm" data-aos="fade-up" data-aos-delay="250">
                 <div class="h-56 overflow-hidden relative bg-gray-100">
                     <img src="{{ asset('images/person-wearing-a-latex-gloves-doing-manicure.jpg') }}" alt="Manicure Service" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                     <span class="absolute top-3 left-3 text-xs font-medium px-2.5 py-1 rounded bg-white/90 text-gray-800 shadow-sm">Nail Studio</span>
                 </div>
                 <div class="p-6">
-                    <h4 class="text-lg font-bold font-['Outfit'] text-gray-900 mb-2">Immaculate Manicure</h4>
+                    <h4 class="text-lg font-bold font-['Outfit'] text-gray-900 mb-2">Manicure</h4>
                     <p class="text-gray-600 text-sm mb-6 line-clamp-2">Precision nail shaping, cuticle care, and flawless polish application to keep your hands looking pristine and elegant.</p>
                     <div class="flex items-center justify-between pt-4 border-t border-gray-100">
                         <span class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Nail Care</span>
@@ -199,13 +199,13 @@
             </div>
 
             <!-- Service Card 5: Pedicure -->
-            <div class="bg-white rounded-xl overflow-hidden border border-gray-200 hover:border-purple-300 transition-all duration-300 group shadow-sm md:col-span-1 lg:col-span-1.5" data-aos="fade-up" data-aos-delay="300">
+            <div class="bg-white rounded-xl overflow-hidden border border-gray-200 hover:border-purple-300 transition-all duration-300 group shadow-sm" data-aos="fade-up" data-aos-delay="300">
                 <div class="h-56 overflow-hidden relative bg-gray-100">
                     <img src="{{ asset('images/bloom-hand-nails.jpg') }}" alt="Pedicure Service" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                     <span class="absolute top-3 left-3 text-xs font-medium px-2.5 py-1 rounded bg-white/90 text-gray-800 shadow-sm">Foot Care</span>
                 </div>
                 <div class="p-6">
-                    <h4 class="text-lg font-bold font-['Outfit'] text-gray-900 mb-2">Luxurious Pedicure</h4>
+                    <h4 class="text-lg font-bold font-['Outfit'] text-gray-900 mb-2">Pedicure</h4>
                     <p class="text-gray-600 text-sm mb-6 line-clamp-2">Treat your feet to ultimate relaxation, deep scrubbing, smoothing, and professional care for lighter, fresher steps.</p>
                     <div class="flex items-center justify-between pt-4 border-t border-gray-100">
                         <span class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Foot Wellness</span>
@@ -281,7 +281,7 @@
                         </div>
                         <div>
                             <h3 class="font-bold font-['Outfit'] text-gray-900 text-base">Inclusive & Welcoming Environment</h3>
-                            <p class="text-gray-600 text-sm">A serene, comfortable space designed for both women and men seeking professional grooming excellence.</p>
+                            <p class="text-gray-600 text-sm">A serene, comfortable space designed for everyone seeking professional grooming excellence.</p>
                         </div>
                     </div>
                 </div>
@@ -304,7 +304,7 @@
 <section class="py-16 bg-white text-gray-900 text-center border-t border-gray-200">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8" data-aos="fade-up">
         <h2 class="text-3xl sm:text-4xl font-bold font-['Outfit'] tracking-tight mb-4 text-gray-900">
-            Usibahatishe, <span class="text-purple-800 italic font-['Outfit']">Trust Bloom & Glow!</span>
+            Leave Nothing to Chance, <span class="text-purple-800 italic font-['Outfit']">Trust Bloom & Glow!</span>
         </h2>
         <p class="text-gray-600 font-['Plus_Jakarta_Sans'] text-base mb-8 max-w-xl mx-auto">
             Secure your appointment today and let Mbita's top beauty and grooming specialists treat you to unmatched dedicated care.

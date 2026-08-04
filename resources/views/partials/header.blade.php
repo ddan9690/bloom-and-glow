@@ -34,6 +34,7 @@
         <!-- Desktop Navigation Links -->
         <nav class="hidden lg:flex items-center gap-6 text-sm font-medium text-gray-600 font-['Plus_Jakarta_Sans']">
             <a href="{{ url('/') }}" class="hover:text-purple-800 transition">Home</a>
+            <a href="{{ route('services') }}" class="hover:text-purple-800 transition">Our Services</a>
             <a href="{{ url('/about') }}" class="hover:text-purple-800 transition">About Us</a>
             <a href="{{ url('/faq') }}" class="hover:text-purple-800 transition">FAQ</a>
             <a href="{{ url('/contact') }}" class="hover:text-purple-800 transition">Contact</a>
@@ -78,6 +79,7 @@
         <div class="space-y-3 pb-4 border-b border-purple-50">
             <p class="text-xs font-bold uppercase tracking-wider text-purple-400 font-['Outfit']">Public Pages</p>
             <a href="{{ url('/') }}" class="block text-gray-700 font-medium hover:text-purple-800">Home</a>
+            <a href="{{ route('services') }}" class="block text-gray-700 font-medium hover:text-purple-800">Our Services</a>
             <a href="{{ url('/about') }}" class="block text-gray-700 font-medium hover:text-purple-800">About Us</a>
             <a href="{{ url('/faq') }}" class="block text-gray-700 font-medium hover:text-purple-800">FAQ</a>
             <a href="{{ url('/contact') }}" class="block text-gray-700 font-medium hover:text-purple-800">Contact</a>
